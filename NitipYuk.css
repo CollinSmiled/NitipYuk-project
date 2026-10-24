@@ -1,0 +1,651 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: #222;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  display: grid;
+  grid-template-columns: auto minmax(180px, 1fr) auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 20px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+/* Logo */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #4b263b;
+  white-space: nowrap;
+}
+
+.brand-icon,
+.auth-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 50%;
+  background: #4b263b;
+}
+
+.brand-icon {
+  width: 56px;
+  height: 56px;
+}
+
+.brand-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.brand-text strong {
+  color: #4b263b;
+  font-size: 27px;
+}
+
+/* Search bar */
+.search {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 8px 14px;
+  border-radius: 24px;
+  background: #f4f4f5;
+}
+
+.search-icon,
+.search button img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.search input {
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+}
+
+.search button {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Menu */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.links a {
+  padding: 9px 10px;
+  color: #222;
+}
+
+.links a:hover {
+  color: #4b263b;
+}
+
+.links .active {
+  border-radius: 22px;
+  background: #f3dfe9;
+  font-weight: bold;
+}
+
+/* Masuk / Daftar */
+.account {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+}
+
+.auth-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #4b263b;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.auth-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.auth-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Banner utama */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 530px;
+  margin: 28px;
+  padding: 60px;
+  overflow: hidden;
+  border-radius: 30px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 244, 248, 0.98) 0%,
+      rgba(255, 238, 244, 0.88) 38%,
+      rgba(255, 238, 244, 0.08) 100%
+    ),
+    url("element/fuji.jpg") center 48% / cover no-repeat;
+  color: #4b263b;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: #f9dfeb;
+  color: #4b263b;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.hero-label img,
+.button-primary img,
+.button-secondary img,
+.hero-location img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.hero h1 {
+  margin: 0 0 20px;
+  font-size: clamp(38px, 4vw, 62px);
+  line-height: 1.12;
+}
+
+.hero p {
+  max-width: 620px;
+  margin: 0 0 30px;
+  color: #756873;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border: 1px solid #4b263b;
+  border-radius: 28px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button-primary {
+  background: #4b263b;
+  color: #fff;
+}
+
+.button-secondary {
+  background: #fff;
+  color: #4b263b;
+}
+
+.hero-location {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 22px;
+  background: rgba(75, 38, 59, 0.85);
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Keunggulan */
+.benefits {
+  display: flex;
+  justify-content: space-around;
+  gap: 24px;
+  margin: 0 28px 28px;
+  padding: 24px 12px;
+  border-bottom: 1px solid #e8e1e5;
+}
+
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  color: #4b263b;
+}
+
+.benefit-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.benefit strong {
+  font-size: 16px;
+}
+
+.benefit p {
+  margin: 5px 0 0;
+  color: #817780;
+  font-size: 14px;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .navbar {
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+  }
+
+  .search {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .links {
+    grid-column: 1 / 3;
+    grid-row: 3;
+    flex-wrap: wrap;
+  }
+
+  .account {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+
+/* Ponsel */
+@media (max-width: 600px) {
+  .navbar {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand-icon img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .brand-text strong {
+    font-size: 22px;
+  }
+
+  .auth-link {
+    gap: 7px;
+    font-size: 14px;
+  }
+
+  .auth-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .auth-icon img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .search {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .links {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    gap: 4px;
+  }
+
+  .links a {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: 480px;
+    margin: 16px;
+    padding: 32px 24px;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255, 244, 248, 0.96),
+        rgba(255, 238, 244, 0.65)
+      ),
+      url("element/fuji.jpg") center / cover no-repeat;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .benefits {
+    flex-direction: column;
+    margin: 0 20px 20px;
+  }
+}
+
+/* Carousel rekomendasi */
+.recommendations {
+  padding: 48px 24px;
+  overflow: hidden;
+  background: #fffafd;
+  color: #4b263b;
+}
+
+.recommendation-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.recommendation-heading h2 {
+  margin: 0 0 4px;
+  font-size: 36px;
+}
+
+.recommendation-heading p {
+  margin: 0;
+  color: #817780;
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.carousel-button {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #eadfe5;
+  border-radius: 50%;
+  background: #fff;
+  color: #4b263b;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.trip-card {
+  position: relative;
+  flex: 0 0 min(380px, 76vw);
+  height: 290px;
+  overflow: hidden;
+  border-radius: 22px;
+  scroll-snap-align: start;
+  background: #4b263b;
+}
+
+.trip-card::after {
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(transparent, rgba(45, 18, 35, 0.9));
+  content: "";
+}
+
+.trip-card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trip-tag {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 16px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #fff;
+  color: #4b263b;
+  font-weight: 600;
+}
+
+.trip-info {
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+}
+
+.trip-info p,
+.trip-info h3 {
+  margin: 0 0 6px;
+}
+
+.trip-info h3 {
+  font-size: 22px;
+}
+
+.trip-info span {
+  color: #f4eaf0;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .recommendations {
+    padding: 36px 16px;
+  }
+
+  .recommendation-heading h2 {
+    font-size: 27px;
+  }
+
+  .carousel-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .trip-card {
+    flex-basis: 82vw;
+    height: 250px;
+  }
+}
+
+/* Pilihan negara */
+.countries {
+  padding: 42px 40px;
+  background: #fffafd;
+  color: #4b263b;
+}
+
+.countries h2 {
+  margin: 0 0 4px;
+  font-size: 36px;
+}
+
+.countries-subtitle {
+  margin: 0 0 32px;
+  color: #817780;
+  font-size: 18px;
+}
+
+.country-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+
+.country-card {
+  flex: 0 0 180px;
+  min-height: 140px;
+}
+
+.country-card img {
+  width: 48px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.country-card:first-child img {
+  width: 36px;
+  height: 36px;
+}
+
+.country-card:hover,
+.country-card.selected {
+  border-color: #4b263b;
+  background: #fbe2ef;
+}
+
+/* Tablet */
+@media (max-width: 800px) {
+  .countries {
+    padding: 36px 24px;
+  }
+
+  .country-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .country-card {
+    min-height: 125px;
+    font-size: 17px;
+  }
+}
+
+/* Ponsel */
+@media (max-width: 480px) {
+  .countries {
+    padding: 32px 16px;
+  }
+
+  .countries h2 {
+    font-size: 29px;
+  }
+
+  .countries-subtitle {
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+
+  .country-card {
+    flex-basis: 150px;
+    min-height: 120px;
+  }
+}
+
+button.country-card {
+  appearance: none;
+  flex: 0 0 180px;
+  min-height: 140px;
+  padding: 16px;
+  border: 1.5px solid #e9e1e5;
+  border-radius: 26px;
+  background: #fff;
+  color: #4b263b;
+  font: inherit;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+button.country-card.selected,
+button.country-card:hover {
+  border-color: #4b263b;
+  background: #fbe2ef;
+}
+
+@media (max-width: 600px) {
+  button.country-card {
+    flex-basis: 150px;
+    min-height: 120px;
+    border-radius: 22px;
+  }
+}
