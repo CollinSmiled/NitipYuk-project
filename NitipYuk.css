@@ -51,9 +51,9 @@ body {
 }
 
 .brand-icon img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
+  width: 36px;
+  height: 36px;
+  transform: translateX(-2px);
 }
 
 .brand-text strong {
