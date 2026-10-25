@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katalog Titipan — NitipYuk</title>
+
+    <link rel="stylesheet" href="NitipYuk.css" />
+    <link rel="stylesheet" href="produk.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" aria-label="Navigasi utama">
+      <a class="brand" href="NitipYuk.html">
+        <span class="brand-icon">
+          <img src="element/logoNitipYuk.png" alt="Logo NitipYuk" />
+        </span>
+        <span class="brand-text"><strong>NitipYuk</strong></span>
+      </a>
+
+      <form class="search" role="search" action="#">
+        <img class="search-icon" src="element/zoom.png" alt="" />
+        <input
+          type="search"
+          name="q"
+          placeholder="Cari produk, brand (cth. Gentle Monster)"
+          aria-label="Cari produk atau brand"
+        />
+        <button type="submit" aria-label="Filter pencarian">
+          <img src="element/settinghero.png" alt="" />
+        </button>
+      </form>
+
+      <div class="links">
+        <a href="NitipYuk.html">Beranda</a>
+        <a class="active" href="produk.html">Produk</a>
+        <a href="pesanan.html">Pesanan</a>
+      </div>
+
+      <div class="account">
+        <a class="auth-link" href="login.html">
+          <span class="auth-icon">
+            <img src="element/user.png" alt="" />
+          </span>
+          <span>Masuk / Daftar</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="product-page">
+      <section class="catalog-intro">
+        <p class="eyebrow">KATALOG TITIPAN</p>
+        <h1>Cari barang incaranmu</h1>
+        <p class="intro-text">
+          Skincare, fashion, dan camilan pilihan dari berbagai negara.
+        </p>
+      </section>
+
+      <section class="catalog">
+        <div class="catalog-toolbar">
+          <div class="category-filters" aria-label="Filter kategori">
+            <button class="category-button is-active" type="button">
+              Semua
+            </button>
+            <button class="category-button" type="button">Fashion</button>
+            <button class="category-button" type="button">Makanan</button>
+            <button class="category-button" type="button">Skincare</button>
+          </div>
+
+          <p class="catalog-count">3 barang tersedia</p>
+        </div>
+
+        <div class="catalog-grid">
+          <article class="product-card">
+            <img
+              class="product-photo"
+              src="element/bag.jpg"
+              alt="Tas mini warna krem"
+            />
+            <div class="product-details">
+              <p class="product-country">🇰🇷 Korea Selatan · Fashion</p>
+              <h2>Tas mini warna krem</h2>
+              <p class="product-price">Mulai dari <strong>Rp450.000</strong></p>
+              <a class="product-link" data-item="tas-mini" href="login.html">
+                Titip sekarang <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img
+              class="product-photo"
+              src="element/snack.jpg"
+              alt="Camilan khas Jepang"
+            />
+            <div class="product-details">
+              <p class="product-country">🇯🇵 Jepang · Makanan</p>
+              <h2>Camilan khas Jepang</h2>
+              <p class="product-price">Mulai dari <strong>Rp85.000</strong></p>
+              <a
+                class="product-link"
+                data-item="camilan-jepang"
+                href="login.html"
+              >
+                Titip sekarang <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img
+              class="product-photo"
+              src="element/skincare.jpg"
+              alt="Serum perawatan wajah"
+            />
+            <div class="product-details">
+              <p class="product-country">🇰🇷 Korea Selatan · Skincare</p>
+              <h2>Serum perawatan wajah</h2>
+              <p class="product-price">Mulai dari <strong>Rp180.000</strong></p>
+              <a class="product-link" data-item="serum-wajah" href="login.html">
+                Titip sekarang <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="authentication.js"></script>
+  </body>
+</html>

@@ -9,17 +9,15 @@
 
   <body>
     <nav class="navbar" aria-label="Navigasi utama">
-      <a class="brand" href="#home">
+      <a class="brand" href="NitipYuk.html">
         <span class="brand-icon">
           <img src="element/logoNitipYuk.png" alt="Logo NitipYuk" />
         </span>
-        <span class="brand-text">
-          <strong>NitipYuk</strong>
-        </span>
+        <span class="brand-text"><strong>NitipYuk</strong></span>
       </a>
 
       <form class="search" role="search" action="#">
-        <img class="search-icon" src="element/zoom.png" alt="Icon pencarian" />
+        <img class="search-icon" src="element/zoom.png" alt="" />
         <input
           type="search"
           name="q"
@@ -27,357 +25,319 @@
           aria-label="Cari produk atau brand"
         />
         <button type="submit" aria-label="Filter pencarian">
-          <img src="element/settinghero.png" alt="Ikon pengaturan" />
+          <img src="element/settinghero.png" alt="" />
         </button>
       </form>
 
       <div class="links">
-        <a class="active" href="#home">Beranda</a>
-        <a href="#produk">Produk</a>
-        <a href="#pesanan">Pesanan</a>
+        <a class="active" href="NitipYuk.html">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="pesanan.html">Pesanan</a>
       </div>
 
       <div class="account">
-        <a class="auth-link" href="#masuk">
+        <a class="auth-link" href="login.html">
           <span class="auth-icon">
-            <img src="element/user.png" alt="Ikon pengguna" />
+            <img src="element/user.png" alt="" />
           </span>
           <span>Masuk / Daftar</span>
         </a>
       </div>
     </nav>
 
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <span class="hero-label">
-          <img
-            src="element/shoppingcart.png"
-            alt="Ikon keranjang belanja kosong berwarna merah muda tua, tampak dari samping dengan latar transparan."
-          />
-          JASA TITIP BELANJA GLOBAL
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-content">
+          <span class="hero-label">
+            <img src="element/shoppingcart.png" alt="" />
+            JASA TITIP BELANJA GLOBAL
+          </span>
+
+          <h1>Barang impian dari luar negeri, tinggal titipin.</h1>
+
+          <p>
+            Titip skincare favorit, fashion pilihan, sampai camilan dari Jepang,
+            Korea, dan negara lainnya. Dari wishlist jadi sampai di depan pintu.
+          </p>
+
+          <div class="hero-buttons">
+            <a class="button-primary" href="produk.html">
+              <img src="element/shopping.png" alt="" />
+              Cari Barang Titipan
+            </a>
+
+            <a class="button-secondary" href="login.html">
+              <img src="element/add.png" alt="" />
+              Request Titipan Baru
+            </a>
+          </div>
+        </div>
+
+        <span class="hero-location">
+          <img src="element/pinlocation.png" alt="" />
+          Gunung Fuji, Jepang
         </span>
+      </section>
 
-        <h1>Barang impian dari luar negeri, tinggal titipin.</h1>
+      <section class="benefits">
+        <div class="benefit">
+          <img class="benefit-icon" src="element/verif.png" alt="" />
+          <div>
+            <strong>Seller terverifikasi</strong>
+            <p>Kenali seller sebelum titip</p>
+          </div>
+        </div>
 
-        <p>
-          Titip skincare favorit, fashion pilihan, sampai camilan dari Jepang,
-          Korea, dan negara lainnya. Dari wishlist jadi sampai di depan pintu.
+        <div class="benefit">
+          <img class="benefit-icon" src="element/world.png" alt="" />
+          <div>
+            <strong>Pilihan lintas negara</strong>
+            <p>Temukan barang dari mana saja</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <img class="benefit-icon" src="element/trip.png" alt="" />
+          <div>
+            <strong>Jadwal trip transparan</strong>
+            <p>Tahu kapan titipanmu tiba</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="recommendations" id="rekomendasi">
+        <div class="recommendation-heading">
+          <div>
+            <h2>Rekomendasi untukmu</h2>
+            <p>Geser untuk lihat trip pilihan minggu ini.</p>
+          </div>
+
+          <div class="carousel-controls">
+            <button
+              type="button"
+              class="carousel-button"
+              id="previous"
+              aria-label="Geser ke kiri"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              class="carousel-button"
+              id="next"
+              aria-label="Geser ke kanan"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+
+        <div class="carousel" id="trip-carousel">
+          <article class="trip-card">
+            <img src="element/seoul.jpg" alt="Pemandangan Seoul" />
+            <span class="trip-tag">Trending</span>
+            <div class="trip-info">
+              <p>🇰🇷 Korea Selatan</p>
+              <h3>Belanja K-beauty di Seoul</h3>
+              <span>Seoulmate · 1–7 Des 2026 · ★ 4.8</span>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <img
+              src="element/kuala-lumpur.jpg"
+              alt="Pemandangan Kuala Lumpur"
+            />
+            <span class="trip-tag">Promo</span>
+            <div class="trip-info">
+              <p>🇲🇾 Malaysia</p>
+              <h3>Midnight sale Kuala Lumpur</h3>
+              <span>KL Runner · 20–23 Nov 2026 · ★ 4.6</span>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <img src="element/new-york.jpg" alt="Pemandangan New York" />
+            <span class="trip-tag">Terbatas</span>
+            <div class="trip-info">
+              <p>🇺🇸 Amerika Serikat</p>
+              <h3>Holiday shopping New York</h3>
+              <span>Big Apple Box · 15–28 Des 2026 · ★ 4.7</span>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <img src="element/tokyo.jpg" alt="Pemandangan Tokyo" />
+            <span class="trip-tag">Populer</span>
+            <div class="trip-info">
+              <p>🇯🇵 Jepang</p>
+              <h3>Berburu barang unik di Tokyo</h3>
+              <span>Tokyo Trip · 5–12 Des 2026 · ★ 4.9</span>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <img src="element/seoul.jpg" alt="Pemandangan Seoul" />
+            <span class="trip-tag">Favorit</span>
+            <div class="trip-info">
+              <p>🇰🇷 Korea Selatan</p>
+              <h3>Jelajah toko fashion Seoul</h3>
+              <span>Seoulmate · 10–16 Des 2026 · ★ 4.8</span>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <img src="element/paris.jpg" alt="Pemandangan Paris" />
+            <span class="trip-tag">Segera</span>
+            <div class="trip-info">
+              <p>🇫🇷 Prancis</p>
+              <h3>Belanja akhir tahun di Paris</h3>
+              <span>Paris Picks · 18–26 Des 2026 · ★ 4.7</span>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <img src="element/singapore.jpg" alt="Pemandangan Singapura" />
+            <span class="trip-tag">Baru</span>
+            <div class="trip-info">
+              <p>🇸🇬 Singapura</p>
+              <h3>Berburu promo di Singapura</h3>
+              <span>Lion City · 2–6 Jan 2027 · ★ 4.6</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="countries" id="negara">
+        <h2>Mau titip dari mana?</h2>
+        <p class="countries-subtitle">
+          Jelajahi negara, temukan titipan favoritmu.
         </p>
 
-        <div class="hero-buttons">
-          <a class="button-primary" href="#katalog">
-            <img src="element/shopping.png" alt="" />
-            Cari Barang Titipan
-          </a>
-
-          <a class="button-secondary" href="#request">
-            <img src="element/add.png" alt="" />
-            Request Titipan Baru
-          </a>
-        </div>
-      </div>
-
-      <span class="hero-location">
-        <img src="element/pinlocation.png" alt="Ikon pin lokasi." />
-        Gunung Fuji, Jepang
-      </span>
-    </section>
-
-    <section class="benefits">
-      <div class="benefit">
-        <img class="benefit-icon" src="element/verif.png" alt="" />
-        <div>
-          <strong>Seller terverifikasi</strong>
-          <p>Kenali seller sebelum titip</p>
-        </div>
-      </div>
-
-      <div class="benefit">
-        <img class="benefit-icon" src="element/world.png" alt="Ikon dunia" />
-        <div>
-          <strong>Pilihan lintas negara</strong>
-          <p>Temukan barang dari mana saja</p>
-        </div>
-      </div>
-
-      <div class="benefit">
-        <img
-          class="benefit-icon"
-          src="element/trip.png"
-          alt="Ikon perjalanan"
-        />
-        <div>
-          <strong>Jadwal trip transparan</strong>
-          <p>Tahu kapan titipanmu tiba</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="recommendations" id="rekomendasi">
-      <div class="recommendation-heading">
-        <div>
-          <h2>Rekomendasi untukmu</h2>
-          <p>Geser untuk lihat trip pilihan minggu ini.</p>
-        </div>
-
-        <div class="carousel-controls">
-          <button
-            type="button"
-            class="carousel-button"
-            id="previous"
-            aria-label="Geser ke kiri"
-          >
-            ‹
+        <div class="country-grid">
+          <button class="country-card selected" type="button">
+            <img src="element/world.png" alt="" />
+            <span>Semua negara</span>
           </button>
-
-          <button
-            type="button"
-            class="carousel-button"
-            id="next"
-            aria-label="Geser ke kanan"
-          >
-            ›
+          <button class="country-card" type="button">
+            <img src="element/japan.png" alt="" />
+            <span>Jepang</span>
+          </button>
+          <button class="country-card" type="button">
+            <img src="element/korsel.png" alt="" />
+            <span>Korea Selatan</span>
+          </button>
+          <button class="country-card" type="button">
+            <img src="element/singapore.png" alt="" />
+            <span>Singapura</span>
+          </button>
+          <button class="country-card" type="button">
+            <img src="element/thailand.png" alt="" />
+            <span>Thailand</span>
+          </button>
+          <button class="country-card" type="button">
+            <img src="element/malaysia.png" alt="" />
+            <span>Malaysia</span>
+          </button>
+          <button class="country-card" type="button">
+            <img src="element/as.png" alt="" />
+            <span>Amerika Serikat</span>
+          </button>
+          <button class="country-card" type="button">
+            <img src="element/asutralia.png" alt="" />
+            <span>Australia</span>
           </button>
         </div>
-      </div>
+      </section>
 
-      <div class="carousel" id="trip-carousel">
-        <article class="trip-card">
-          <img src="element/seoul.jpg" alt="Pemandangan Seoul" />
-          <span class="trip-tag">Trending</span>
-          <div class="trip-info">
-            <p>🇰🇷 Korea Selatan</p>
-            <h3>Belanja K-beauty di Seoul</h3>
-            <span>Seoulmate · 1–7 Des 2026 · ★ 4.8</span>
+      <section class="product-categories" id="produk">
+        <div class="product-categories__header">
+          <div>
+            <h2>Mau titip apa?</h2>
+            <p>Pilihan produk jastip · Katalog contoh</p>
           </div>
-        </article>
 
-        <article class="trip-card">
-          <img src="element/kuala-lumpur.jpg" alt="Pemandangan Kuala Lumpur" />
-          <span class="trip-tag">Promo</span>
-          <div class="trip-info">
-            <p>🇲🇾 Malaysia</p>
-            <h3>Midnight sale Kuala Lumpur</h3>
-            <span>KL Runner · 20–23 Nov 2026 · ★ 4.6</span>
-          </div>
-        </article>
-
-        <article class="trip-card">
-          <img src="element/new-york.jpg" alt="Pemandangan New York" />
-          <span class="trip-tag">Terbatas</span>
-          <div class="trip-info">
-            <p>🇺🇸 Amerika Serikat</p>
-            <h3>Holiday shopping New York</h3>
-            <span>Big Apple Box · 15–28 Des 2026 · ★ 4.7</span>
-          </div>
-        </article>
-
-        <article class="trip-card">
-          <img src="element/tokyo.jpg" alt="Pemandangan Tokyo" />
-          <span class="trip-tag">Populer</span>
-          <div class="trip-info">
-            <p>🇯🇵 Jepang</p>
-            <h3>Berburu barang unik di Tokyo</h3>
-            <span>Tokyo Trip · 5–12 Des 2026 · ★ 4.9</span>
-          </div>
-        </article>
-
-        <article class="trip-card">
-          <img src="element/seoul.jpg" alt="Pemandangan Seoul" />
-          <span class="trip-tag">Favorit</span>
-          <div class="trip-info">
-            <p>🇰🇷 Korea Selatan</p>
-            <h3>Jelajah toko fashion Seoul</h3>
-            <span>Seoulmate · 10–16 Des 2026 · ★ 4.8</span>
-          </div>
-        </article>
-
-        <article class="trip-card">
-          <img src="element/paris.jpg" alt="Pemandangan Paris" />
-          <span class="trip-tag">Segera</span>
-          <div class="trip-info">
-            <p>🇫🇷 Prancis</p>
-            <h3>Belanja akhir tahun di Paris</h3>
-            <span>Paris Picks · 18–26 Des 2026 · ★ 4.7</span>
-          </div>
-        </article>
-
-        <article class="trip-card">
-          <img src="element/singapore.jpg" alt="Pemandangan Singapura" />
-          <span class="trip-tag">Baru</span>
-          <div class="trip-info">
-            <p>🇸🇬 Singapura</p>
-            <h3>Berburu promo di Singapura</h3>
-            <span>Lion City · 2–6 Jan 2027 · ★ 4.6</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <script>
-      const carousel = document.querySelector("#trip-carousel");
-      const kartu = carousel.querySelector(".trip-card");
-      const jarak = () => kartu.offsetWidth + 20;
-
-      function geserBerikutnya() {
-        if (
-          carousel.scrollLeft + carousel.clientWidth >=
-          carousel.scrollWidth - 5
-        ) {
-          carousel.scrollTo({ left: 0, behavior: "smooth" });
-        } else {
-          carousel.scrollBy({ left: jarak(), behavior: "smooth" });
-        }
-      }
-
-      document
-        .querySelector("#next")
-        .addEventListener("click", geserBerikutnya);
-
-      document.querySelector("#previous").addEventListener("click", () => {
-        carousel.scrollBy({ left: -jarak(), behavior: "smooth" });
-      });
-
-      setInterval(geserBerikutnya, 10000);
-    </script>
-
-    <section class="countries" id="negara">
-      <h2>Mau titip dari mana?</h2>
-      <p class="countries-subtitle">
-        Jelajahi negara, temukan titipan favoritmu.
-      </p>
-
-      <div class="country-grid">
-        <button class="country-card selected" type="button">
-          <img src="element/world.png" alt="Ikon dunia" />
-          <span>Semua negara</span>
-        </button>
-
-        <button class="country-card" type="button">
-          <img src="element/japan.png" alt="Bendera Jepang" />
-          <span>Jepang</span>
-        </button>
-
-        <button class="country-card" type="button">
-          <img src="element/korsel.png" alt="Bendera Korea Selatan" />
-          <span>Korea Selatan</span>
-        </button>
-
-        <button class="country-card" type="button">
-          <img src="element/singapore.png" alt="Bendera Singapura" />
-          <span>Singapura</span>
-        </button>
-
-        <button class="country-card" type="button">
-          <img src="element/thailand.png" alt="Bendera Thailand" />
-          <span>Thailand</span>
-        </button>
-
-        <button class="country-card" type="button">
-          <img src="element/malaysia.png" alt="Bendera Malaysia" />
-          <span>Malaysia</span>
-        </button>
-
-        <button class="country-card" type="button">
-          <img src="element/as.png" alt="Bendera Amerika Serikat" />
-          <span>Amerika Serikat</span>
-        </button>
-
-        <button class="country-card" type="button">
-          <img src="element/asutralia.png" alt="Bendera Australia" />
-          <span>Australia</span>
-        </button>
-      </div>
-    </section>
-    <section class="product-categories" id="produk">
-      <div class="product-categories__header">
-        <div>
-          <h2>Mau titip apa?</h2>
-          <p>Pilihan produk jastip · Katalog contoh</p>
+          <a class="product-categories__all" href="produk.html">
+            Semua produk <span aria-hidden="true">→</span>
+          </a>
         </div>
 
-        <a class="product-categories__all" href="#katalog">
-          Semua produk <span aria-hidden="true">→</span>
-        </a>
-      </div>
-
-      <div class="product-categories__filters" aria-label="Kategori produk">
-        <button
-          class="product-filter is-active"
-          type="button"
-          aria-pressed="true"
-        >
-          Semua produk
-        </button>
-        <button class="product-filter" type="button" aria-pressed="false">
-          Fashion
-        </button>
-        <button class="product-filter" type="button" aria-pressed="false">
-          Makanan
-        </button>
-        <button class="product-filter" type="button" aria-pressed="false">
-          Skincare
-        </button>
-      </div>
-    </section>
-    <section class="catalog" id="katalog">
-      <div class="catalog-heading">
-        <div>
-          <h2>Produk pilihan</h2>
-          <p>Inspirasi barang yang bisa kamu titipkan.</p>
+        <div class="product-categories__filters" aria-label="Kategori produk">
+          <button
+            class="product-filter is-active"
+            type="button"
+            aria-pressed="true"
+          >
+            Semua produk
+          </button>
+          <button class="product-filter" type="button" aria-pressed="false">
+            Fashion
+          </button>
+          <button class="product-filter" type="button" aria-pressed="false">
+            Makanan
+          </button>
+          <button class="product-filter" type="button" aria-pressed="false">
+            Skincare
+          </button>
         </div>
-        <span class="catalog-count">3 produk</span>
-      </div>
 
-      <div class="catalog-grid">
-        <article class="product-card">
-          <img
-            class="product-photo"
-            src="element/bag.jpg"
-            alt="Tas mini warna krem"
-          />
-          <div class="product-details">
-            <p class="product-country">🇰🇷 Korea Selatan</p>
-            <h3>Tas mini warna krem</h3>
-            <p class="product-price">Mulai dari <strong>Rp450.000</strong></p>
-            <a class="product-link" href="#pesanan">
-              Titip sekarang <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </article>
+        <div class="catalog-grid">
+          <article class="product-card">
+            <img
+              class="product-photo"
+              src="element/bag.jpg"
+              alt="Tas mini warna krem"
+            />
+            <div class="product-details">
+              <p class="product-country">🇰🇷 Korea Selatan</p>
+              <h3>Tas mini warna krem</h3>
+              <p class="product-price">Mulai dari <strong>Rp450.000</strong></p>
+              <a class="product-link" data-item="tas-mini" href="login.html">
+                Titip sekarang <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
 
-        <article class="product-card">
-          <img
-            class="product-photo"
-            src="element/snack.jpg"
-            alt="Camilan khas Jepang"
-          />
-          <div class="product-details">
-            <p class="product-country">🇯🇵 Jepang</p>
-            <h3>Camilan khas Jepang</h3>
-            <p class="product-price">Mulai dari <strong>Rp85.000</strong></p>
-            <a class="product-link" href="#pesanan">
-              Titip sekarang <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </article>
+          <article class="product-card">
+            <img
+              class="product-photo"
+              src="element/snack.jpg"
+              alt="Camilan khas Jepang"
+            />
+            <div class="product-details">
+              <p class="product-country">🇯🇵 Jepang</p>
+              <h3>Camilan khas Jepang</h3>
+              <p class="product-price">Mulai dari <strong>Rp85.000</strong></p>
+              <a
+                class="product-link"
+                data-item="camilan-jepang"
+                href="login.html"
+              >
+                Titip sekarang <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
 
-        <article class="product-card">
-          <img
-            class="product-photo"
-            src="element/skincare.jpg"
-            alt="Serum perawatan wajah"
-          />
-          <div class="product-details">
-            <p class="product-country">🇰🇷 Korea Selatan</p>
-            <h3>Serum perawatan wajah</h3>
-            <p class="product-price">Mulai dari <strong>Rp180.000</strong></p>
-            <a class="product-link" href="#pesanan">
-              Titip sekarang <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </article>
-      </div>
-    </section>
+          <article class="product-card">
+            <img
+              class="product-photo"
+              src="element/skincare.jpg"
+              alt="Serum perawatan wajah"
+            />
+            <div class="product-details">
+              <p class="product-country">🇰🇷 Korea Selatan</p>
+              <h3>Serum perawatan wajah</h3>
+              <p class="product-price">Mulai dari <strong>Rp180.000</strong></p>
+              <a class="product-link" data-item="serum-wajah" href="login.html">
+                Titip sekarang <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="NitipYuk.js"></script>
+    <script src="authentication.js"></script>
   </body>
 </html>

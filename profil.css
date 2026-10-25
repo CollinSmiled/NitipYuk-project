@@ -1,0 +1,283 @@
+.settings-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+  width: min(100% - 48px, 1280px);
+  margin: 40px auto 72px;
+  color: #4c263b;
+}
+
+.settings-sidebar {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 20px 14px;
+  border: 1px solid #eadde5;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.sidebar-title {
+  margin: 0 10px 12px;
+  color: #8b667a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.sidebar-link {
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: #65505d;
+  text-decoration: none;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: #f8e8f0;
+  color: #4c1238;
+  font-weight: 700;
+}
+
+.profile-content {
+  min-width: 0;
+}
+
+.page-heading {
+  margin: 4px 0 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #8b667a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.page-heading h1 {
+  margin: 0;
+  font-size: 34px;
+}
+
+.page-heading > p:last-child {
+  margin: 9px 0 0;
+  color: #887b83;
+}
+
+.profile-banner {
+  overflow: hidden;
+  border: 1px solid #eadde5;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(76 38 59 / 6%);
+}
+
+.cover-art {
+  height: 145px;
+  background: linear-gradient(115deg, #f3dce8 0%, #b27d9a 48%, #4c263b 100%);
+}
+
+.profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 112px;
+  padding: 0 28px 20px;
+}
+
+.profile-photo {
+  width: 94px;
+  height: 94px;
+  flex: 0 0 94px;
+  margin-top: -48px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: #f5edf2;
+  object-fit: cover;
+  box-shadow: 0 3px 12px rgb(76 38 59 / 14%);
+}
+
+.identity-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.identity-text h2 {
+  margin: 0 0 5px;
+  overflow-wrap: anywhere;
+  font-size: 22px;
+}
+
+.identity-text p {
+  margin: 0;
+  color: #887b83;
+}
+
+.photo-button {
+  padding: 10px 16px;
+  border: 1px solid #eadde5;
+  border-radius: 22px;
+  color: #4c263b;
+  cursor: pointer;
+}
+
+.photo-button:hover {
+  background: #fff7fb;
+}
+
+.photo-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.profile-form {
+  margin-top: 22px;
+  padding: 28px;
+  border: 1px solid #eadde5;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(76 38 59 / 6%);
+}
+
+.form-heading {
+  margin-bottom: 24px;
+}
+
+.form-heading h2 {
+  margin: 0 0 6px;
+  font-size: 21px;
+}
+
+.form-heading p,
+.form-field small {
+  margin: 0;
+  color: #887b83;
+  font-size: 14px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.form-field {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.form-field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #e5d8e0;
+  border-radius: 12px;
+  background: #fff;
+  color: #4c263b;
+  font: inherit;
+}
+
+.form-field input[readonly] {
+  background: #f8f4f6;
+  color: #887b83;
+}
+
+.form-field input:focus {
+  border-color: #7e4968;
+  outline: 3px solid rgb(126 73 104 / 12%);
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+#save-message {
+  margin: 0;
+  color: #587345;
+  font-size: 14px;
+}
+
+.save-button {
+  min-height: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 24px;
+  background: #4c1238;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background: #64204d;
+}
+
+@media (max-width: 760px) {
+  .settings-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: min(100% - 32px, 620px);
+    margin-top: 24px;
+  }
+
+  .settings-sidebar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sidebar-title {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .profile-identity {
+    flex-wrap: wrap;
+    padding: 0 18px 20px;
+  }
+
+  .identity-text {
+    flex-basis: calc(100% - 115px);
+  }
+
+  .photo-button {
+    margin-left: 112px;
+  }
+
+  .profile-form {
+    padding: 22px 18px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field.full-width {
+    grid-column: auto;
+  }
+
+  .form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

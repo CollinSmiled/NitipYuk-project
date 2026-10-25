@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil — NitipYuk</title>
+
+    <link rel="stylesheet" href="NitipYuk.css" />
+    <link rel="stylesheet" href="profil.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" aria-label="Navigasi utama">
+      <a class="brand" href="NitipYuk.html">
+        <span class="brand-icon">
+          <img src="element/logoNitipYuk.png" alt="Logo NitipYuk" />
+        </span>
+        <span class="brand-text"><strong>NitipYuk</strong></span>
+      </a>
+
+      <form class="search" role="search" action="#">
+        <img class="search-icon" src="element/zoom.png" alt="" />
+        <input
+          type="search"
+          name="q"
+          placeholder="Cari produk, brand (cth. Gentle Monster)"
+          aria-label="Cari produk atau brand"
+        />
+        <button type="submit" aria-label="Filter pencarian">
+          <img src="element/settinghero.png" alt="" />
+        </button>
+      </form>
+
+      <div class="links">
+        <a href="NitipYuk.html">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="pesanan.html">Pesanan</a>
+      </div>
+
+      <div class="account">
+        <a class="auth-link" href="profil.html">
+          <span class="auth-icon">
+            <img src="element/user.png" alt="" />
+          </span>
+          <span>Profil saya</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="settings-layout">
+      <aside class="settings-sidebar">
+        <p class="sidebar-title">AKUN SAYA</p>
+        <a class="sidebar-link active" href="profil.html">Profil</a>
+        <a class="sidebar-link" href="pesanan.html">Pesanan saya</a>
+        <a class="sidebar-link" href="produk.html">Jelajahi produk</a>
+        <a class="sidebar-link" href="NitipYuk.html">Kembali ke beranda</a>
+      </aside>
+
+      <section class="profile-content">
+        <header class="page-heading">
+          <p class="eyebrow">PENGATURAN AKUN</p>
+          <h1>Profil saya</h1>
+          <p>Kelola informasi yang digunakan di akun NitipYuk.</p>
+        </header>
+
+        <section class="profile-banner">
+          <div class="cover-art" aria-hidden="true"></div>
+
+          <div class="profile-identity">
+            <img
+              id="profile-photo"
+              class="profile-photo"
+              src="element/user.png"
+              alt="Foto profil"
+            />
+
+            <div class="identity-text">
+              <h2 id="profile-display-name">Nama pengguna</h2>
+              <p id="profile-role">Buyer</p>
+            </div>
+
+            <label class="photo-button" for="photo-input"> Ganti foto </label>
+            <input
+              id="photo-input"
+              class="photo-input"
+              type="file"
+              accept="image/*"
+            />
+          </div>
+        </section>
+
+        <form id="profile-form" class="profile-form">
+          <div class="form-heading">
+            <div>
+              <h2>Informasi akun</h2>
+              <p>Perbarui nama dan nomor teleponmu.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="profile-name">Nama lengkap</label>
+              <input id="profile-name" name="name" type="text" required />
+            </div>
+
+            <div class="form-field">
+              <label for="profile-phone">Nomor telepon</label>
+              <input id="profile-phone" name="phone" type="tel" required />
+            </div>
+
+            <div class="form-field full-width">
+              <label for="profile-email">Email</label>
+              <input id="profile-email" name="email" type="email" readonly />
+              <small>Email tidak dapat diubah di halaman ini.</small>
+            </div>
+
+            <div id="shop-field" class="form-field full-width" hidden>
+              <label for="profile-shop">Nama toko</label>
+              <input id="profile-shop" name="shopName" type="text" />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <p id="save-message" aria-live="polite"></p>
+            <button class="save-button" type="submit">Simpan perubahan</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="authentication.js"></script>
+    <script src="profil.js"></script>
+  </body>
+</html>

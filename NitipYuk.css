@@ -472,6 +472,9 @@ button.country-card:hover {
   background: #fffafd;
   color: #4b263b;
 }
+.product-categories .catalog-grid {
+  margin-top: 32px;
+}
 
 .product-categories__header {
   display: flex;

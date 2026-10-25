@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masuk — NitipYuk</title>
+
+    <link rel="stylesheet" href="NitipYuk.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" aria-label="Navigasi utama">
+      <a class="brand" href="NitipYuk.html">
+        <span class="brand-icon">
+          <img src="element/logoNitipYuk.png" alt="Logo NitipYuk" />
+        </span>
+        <span class="brand-text"><strong>NitipYuk</strong></span>
+      </a>
+
+      <form class="search" role="search" action="#">
+        <img class="search-icon" src="element/zoom.png" alt="" />
+        <input
+          type="search"
+          name="q"
+          placeholder="Cari produk, brand (cth. Gentle Monster)"
+          aria-label="Cari produk atau brand"
+        />
+        <button type="submit" aria-label="Filter pencarian">
+          <img src="element/settinghero.png" alt="" />
+        </button>
+      </form>
+
+      <div class="links">
+        <a href="NitipYuk.html">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="pesanan.html">Pesanan</a>
+      </div>
+
+      <div class="account">
+        <a class="auth-link" href="login.html">
+          <span class="auth-icon">
+            <img src="element/user.png" alt="" />
+          </span>
+          <span>Masuk / Daftar</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="login-page">
+      <section class="login-card">
+        <p class="login-eyebrow">SELAMAT DATANG KEMBALI</p>
+        <h1>Masuk ke akunmu</h1>
+        <p class="login-description">
+          Masuk untuk melanjutkan titipan dan melihat pesananmu.
+        </p>
+
+        <form id="login-form" class="login-form">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="nama@gmail.com"
+            autocomplete="email"
+            required
+          />
+
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Masukkan password"
+            autocomplete="current-password"
+            required
+          />
+
+          <button type="submit" class="login-button">Masuk</button>
+        </form>
+
+        <p class="register-prompt">
+          Belum punya akun?
+          <a id="register-link" href="register.html">Daftar di sini</a>
+        </p>
+      </section>
+    </main>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const requestedReturn = params.get("return") || "NitipYuk.html";
+
+      const allowedReturn =
+        /^(NitipYuk\.html|produk\.html|pesanan\.html|form-titipan\.html)(\?[\w=&%-]*)?$/.test(
+          requestedReturn,
+        )
+          ? requestedReturn
+          : "NitipYuk.html";
+
+      document.querySelector("#register-link").href =
+        "register.html?return=" + encodeURIComponent(allowedReturn);
+
+      const loginForm = document.querySelector("#login-form");
+      const emailInput = document.querySelector("#email");
+
+      function validateGmail() {
+        const email = emailInput.value.trim();
+        const gmailValid = /^[A-Z0-9._%+-]+@gmail\.com$/i.test(email);
+
+        if (email && !gmailValid) {
+          emailInput.setCustomValidity(
+            "Gunakan email yang berakhiran @gmail.com.",
+          );
+        } else {
+          emailInput.setCustomValidity("");
+        }
+      }
+
+      emailInput.addEventListener("input", validateGmail);
+
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        validateGmail();
+
+        if (!loginForm.reportValidity()) {
+          return;
+        }
+
+        const email = emailInput.value.trim();
+
+        // Demo: menyimpan email dan peran, bukan password.
+        localStorage.setItem(
+          "nitipyuk-user",
+          JSON.stringify({ email, role: "buyer" }),
+        );
+
+        window.location.href = allowedReturn;
+      });
+    </script>
+    <script src="authentication.js"></script>
+  </body>
+</html>

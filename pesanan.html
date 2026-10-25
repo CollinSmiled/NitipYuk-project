@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesanan — NitipYuk</title>
+
+    <link rel="stylesheet" href="NitipYuk.css" />
+    <link rel="stylesheet" href="pesanan.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" aria-label="Navigasi utama">
+      <a class="brand" href="NitipYuk.html">
+        <span class="brand-icon">
+          <img src="element/logoNitipYuk.png" alt="Logo NitipYuk" />
+        </span>
+        <span class="brand-text"><strong>NitipYuk</strong></span>
+      </a>
+
+      <form class="search" role="search" action="#">
+        <img class="search-icon" src="element/zoom.png" alt="" />
+        <input
+          type="search"
+          name="q"
+          placeholder="Cari produk, brand (cth. Gentle Monster)"
+          aria-label="Cari produk atau brand"
+        />
+        <button type="submit" aria-label="Filter pencarian">
+          <img src="element/settinghero.png" alt="" />
+        </button>
+      </form>
+
+      <div class="links">
+        <a href="NitipYuk.html">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a class="active" href="pesanan.html">Pesanan</a>
+      </div>
+
+      <div class="account">
+        <a class="auth-link" href="login.html?return=pesanan.html">
+          <span class="auth-icon">
+            <img src="element/user.png" alt="" />
+          </span>
+          <span>Masuk / Daftar</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="orders-page">
+      <!-- Tampilan untuk pengguna yang belum login -->
+      <section class="orders-guest" id="orders-guest">
+        <div class="orders-icon" aria-hidden="true">📦</div>
+        <p class="eyebrow">PESANAN SAYA</p>
+        <h1>Semua titipanmu, bisa dilacak di sini.</h1>
+        <p class="orders-message">
+          Masuk ke akun Buyer untuk melihat pesanan dan mengikuti perjalanan
+          barang titipanmu.
+        </p>
+
+        <a class="login-button" href="login.html?return=pesanan.html">
+          Masuk / Daftar
+        </a>
+      </section>
+
+      <!-- Tampilan untuk Buyer yang sudah login -->
+      <section class="orders-buyer" id="orders-buyer" hidden>
+        <div class="orders-heading">
+          <div>
+            <p class="eyebrow">AKUN BUYER</p>
+            <h1>Pesanan saya</h1>
+            <p>Lihat perkembangan barang titipanmu di sini.</p>
+          </div>
+
+          <a class="new-order-button" href="produk.html"> + Titipan baru </a>
+        </div>
+
+        <div class="empty-orders">
+          <div class="orders-icon" aria-hidden="true">📦</div>
+          <h2>Belum ada pesanan</h2>
+          <p>
+            Pesananmu akan muncul di sini setelah kamu mengisi form titipan.
+          </p>
+          <a class="login-button" href="produk.html">Cari barang titipan</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="authentication.js"></script>
+  </body>
+</html>
+
+jadi ini full code pesananan?

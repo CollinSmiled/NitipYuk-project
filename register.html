@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar — NitipYuk</title>
+
+    <link rel="stylesheet" href="NitipYuk.css" />
+    <link rel="stylesheet" href="register.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" aria-label="Navigasi utama">
+      <a class="brand" href="NitipYuk.html">
+        <span class="brand-icon">
+          <img src="element/logoNitipYuk.png" alt="Logo NitipYuk" />
+        </span>
+        <span class="brand-text"><strong>NitipYuk</strong></span>
+      </a>
+
+      <form class="search" role="search" action="#">
+        <img class="search-icon" src="element/zoom.png" alt="" />
+        <input
+          type="search"
+          name="q"
+          placeholder="Cari produk, brand (cth. Gentle Monster)"
+          aria-label="Cari produk atau brand"
+        />
+        <button type="submit" aria-label="Filter pencarian">
+          <img src="element/settinghero.png" alt="" />
+        </button>
+      </form>
+
+      <div class="links">
+        <a href="NitipYuk.html">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="pesanan.html">Pesanan</a>
+      </div>
+
+      <div class="account">
+        <a class="auth-link" href="login.html">
+          <span class="auth-icon">
+            <img src="element/user.png" alt="" />
+          </span>
+          <span>Masuk / Daftar</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="register-page">
+      <section class="register-card">
+        <p class="register-eyebrow">GABUNG BERSAMA NITIPYUK</p>
+        <h1>Buat akun</h1>
+        <p class="register-description">
+          Pilih jenis akun, lalu lengkapi data pendaftaran.
+        </p>
+
+        <form id="register-form" class="register-form">
+          <fieldset class="role-options">
+            <legend>Daftar sebagai</legend>
+
+            <label class="role-option">
+              <input type="radio" name="role" value="buyer" checked />
+              <span>
+                <strong>Buyer</strong>
+                <small>Mencari dan memesan barang titipan</small>
+              </span>
+            </label>
+
+            <label class="role-option">
+              <input type="radio" name="role" value="penitip" />
+              <span>
+                <strong>Penitip</strong>
+                <small>Membuka layanan titip belanja</small>
+              </span>
+            </label>
+          </fieldset>
+
+          <label for="name">Nama lengkap</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Nama kamu"
+            autocomplete="name"
+            required
+          />
+
+          <div id="shop-field" class="conditional-field" hidden>
+            <label for="shop-name">Nama toko</label>
+            <input
+              id="shop-name"
+              name="shopName"
+              type="text"
+              placeholder="Nama toko kamu"
+              autocomplete="organization"
+            />
+          </div>
+
+          <label for="phone">Nomor telepon</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="08xxxxxxxxxx"
+            autocomplete="tel"
+            required
+          />
+
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="nama@gmail.com"
+            autocomplete="email"
+            required
+          />
+
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Minimal 8 karakter"
+            autocomplete="new-password"
+            minlength="8"
+            required
+          />
+
+          <label for="confirm-password">Konfirmasi password</label>
+          <input
+            id="confirm-password"
+            name="confirmPassword"
+            type="password"
+            placeholder="Ketik ulang password"
+            autocomplete="new-password"
+            required
+          />
+
+          <div id="identity-field" class="conditional-field" hidden>
+            <label for="identity-document"
+              >Upload dokumen identitas (KTP)</label
+            >
+            <input
+              id="identity-document"
+              name="identityDocument"
+              type="file"
+              accept=".jpg,.jpeg,.png,.pdf"
+            />
+            <small class="field-note">
+              KTP wajib diunggah untuk akun Penitip.
+            </small>
+          </div>
+
+          <button type="submit" class="register-button">Daftar</button>
+        </form>
+
+        <p class="login-prompt">
+          Sudah punya akun?
+          <a id="login-link" href="login.html">Masuk di sini</a>
+        </p>
+      </section>
+    </main>
+
+    <script src="register.js"></script>
+    <script src="authentication.js"></script>
+  </body>
+</html>
