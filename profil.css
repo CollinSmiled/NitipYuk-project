@@ -1,3 +1,4 @@
+/* Tata letak halaman profil */
 .settings-layout {
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
@@ -7,6 +8,7 @@
   color: #4c263b;
 }
 
+/* Sidebar akun */
 .settings-sidebar {
   display: grid;
   align-content: start;
@@ -26,10 +28,19 @@
 }
 
 .sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
   padding: 12px 14px;
+  border: 0;
   border-radius: 12px;
+  background: transparent;
   color: #65505d;
+  font: inherit;
+  text-align: left;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .sidebar-link:hover,
@@ -39,6 +50,24 @@
   font-weight: 700;
 }
 
+/* Tombol Keluar */
+.logout-button {
+  color: #b64055;
+}
+
+.logout-button:hover {
+  background: #f8e8f0;
+  color: #b64055;
+}
+
+.sidebar-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  object-fit: contain;
+}
+
+/* Konten profil */
 .profile-content {
   min-width: 0;
 }
@@ -65,6 +94,7 @@
   color: #887b83;
 }
 
+/* Kartu foto dan identitas */
 .profile-banner {
   overflow: hidden;
   border: 1px solid #eadde5;
@@ -136,7 +166,40 @@
   white-space: nowrap;
 }
 
-.profile-form {
+/* Ringkasan jumlah titipan */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.stat-card {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 24px 16px;
+  border-radius: 24px;
+  background: #f8edf3;
+  color: #4c263b;
+}
+
+.stat-icon {
+  font-size: 24px;
+}
+
+.stat-card strong {
+  font-size: 32px;
+}
+
+.stat-card > span:last-child {
+  color: #887b83;
+  font-size: 17px;
+}
+
+/* Informasi pribadi dan metode pembayaran */
+.profile-info-card,
+.account-section {
   margin-top: 22px;
   padding: 28px;
   border: 1px solid #eadde5;
@@ -146,93 +209,79 @@
 }
 
 .form-heading {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
-.form-heading h2 {
+.form-heading h2,
+.account-section-heading h2 {
   margin: 0 0 6px;
   font-size: 21px;
 }
 
 .form-heading p,
-.form-field small {
+.account-section-heading p {
   margin: 0;
   color: #887b83;
   font-size: 14px;
 }
 
-.form-grid {
+/* Baris data pribadi */
+.profile-info-list {
+  margin: 0;
+}
+
+.profile-info-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid #eee5ea;
 }
 
-.form-field {
-  display: grid;
-  align-content: start;
-  gap: 8px;
-}
-
-.form-field.full-width {
-  grid-column: 1 / -1;
-}
-
-.form-field label {
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.form-field input {
-  width: 100%;
-  min-height: 48px;
-  padding: 12px 14px;
-  border: 1px solid #e5d8e0;
-  border-radius: 12px;
-  background: #fff;
-  color: #4c263b;
-  font: inherit;
-}
-
-.form-field input[readonly] {
-  background: #f8f4f6;
+.profile-info-row dt {
   color: #887b83;
 }
 
-.form-field input:focus {
-  border-color: #7e4968;
-  outline: 3px solid rgb(126 73 104 / 12%);
+.profile-info-row dd {
+  margin: 0;
+  color: #4c263b;
+  font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
-.form-actions {
+/* Metode pembayaran */
+.payment-empty {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 26px;
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #fffafd;
 }
 
-#save-message {
+.payment-empty p {
   margin: 0;
-  color: #587345;
-  font-size: 14px;
+  color: #887b83;
 }
 
-.save-button {
-  min-height: 48px;
-  padding: 0 22px;
-  border: 0;
-  border-radius: 24px;
-  background: #4c1238;
-  color: #fff;
+.add-payment-button {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid #eadde5;
+  border-radius: 22px;
+  background: #fff;
+  color: #887b83;
   font: inherit;
-  font-weight: 700;
-  cursor: pointer;
 }
 
-.save-button:hover {
-  background: #64204d;
+.add-payment-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
+/* Tampilan tablet dan ponsel */
 @media (max-width: 760px) {
   .settings-layout {
     grid-template-columns: 1fr;
@@ -250,34 +299,49 @@
   }
 }
 
+@media (max-width: 600px) {
+  .profile-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .profile-info-card,
+  .account-section {
+    padding: 22px 18px;
+  }
+
+  .profile-info-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .payment-empty {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 520px) {
+  .page-heading h1 {
+    font-size: 28px;
+  }
+
   .profile-identity {
     flex-wrap: wrap;
     padding: 0 18px 20px;
   }
 
+  .profile-photo {
+    width: 80px;
+    height: 80px;
+    flex-basis: 80px;
+  }
+
   .identity-text {
-    flex-basis: calc(100% - 115px);
+    flex-basis: calc(100% - 110px);
   }
 
   .photo-button {
-    margin-left: 112px;
-  }
-
-  .profile-form {
-    padding: 22px 18px;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-field.full-width {
-    grid-column: auto;
-  }
-
-  .form-actions {
-    align-items: stretch;
-    flex-direction: column;
+    margin-left: 98px;
   }
 }

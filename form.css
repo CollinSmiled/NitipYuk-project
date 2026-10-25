@@ -1,0 +1,202 @@
+/* Halaman form titipan */
+.request-page {
+  width: min(100% - 48px, 900px);
+  margin: 48px auto 72px;
+  color: #4c263b;
+}
+
+.request-heading {
+  margin-bottom: 28px;
+}
+
+.request-heading .eyebrow,
+.selected-product .eyebrow {
+  margin: 0 0 8px;
+  color: #8b667a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.request-heading h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.request-heading > p:last-child {
+  margin: 10px 0 0;
+  color: #887b83;
+  font-size: 17px;
+}
+
+/* Kartu dan susunan form */
+.request-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 20px;
+  padding: 30px;
+  border: 1px solid #eadde5;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(76 38 59 / 6%);
+}
+
+.selected-product {
+  grid-column: 1 / -1;
+  padding: 18px 20px;
+  border: 1px solid #eadde5;
+  border-radius: 16px;
+  background: #fff7fb;
+}
+
+.selected-product h2 {
+  margin: 0 0 6px;
+  color: #4c263b;
+  font-size: 20px;
+}
+
+.selected-product > p:last-child {
+  margin: 0;
+  color: #887b83;
+}
+
+.request-form .form-field {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.request-form .form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.request-form .form-field label {
+  color: #4c263b;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Input, pilihan alamat, dan catatan */
+.request-form .form-field input,
+.request-form .form-field select,
+.request-form .form-field textarea {
+  width: 100%;
+  min-height: 50px;
+  padding: 13px 15px;
+  border: 1px solid #e5d8e0;
+  border-radius: 12px;
+  background: #fff;
+  color: #4c263b;
+  font: inherit;
+}
+
+.request-form .form-field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.request-form .form-field input::placeholder,
+.request-form .form-field textarea::placeholder {
+  color: #a1949c;
+}
+
+.request-form .form-field input:focus,
+.request-form .form-field select:focus,
+.request-form .form-field textarea:focus {
+  border-color: #7e4968;
+  outline: 3px solid rgb(126 73 104 / 12%);
+}
+
+.address-link {
+  display: inline-block;
+  width: fit-content;
+  color: #4c1238;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.address-link:hover {
+  text-decoration: underline;
+}
+
+/* Tombol form */
+.request-actions {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.cancel-button,
+.submit-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22px;
+  border-radius: 24px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cancel-button {
+  border: 1px solid #eadde5;
+  background: #fff;
+  color: #4c263b;
+}
+
+.cancel-button:hover {
+  background: #fff7fb;
+}
+
+.submit-button {
+  border: 0;
+  background: #4c1238;
+  color: #fff;
+}
+
+.submit-button:hover {
+  background: #64204d;
+}
+
+#request-message {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #587345;
+  font-size: 14px;
+}
+
+/* Tampilan layar kecil */
+@media (max-width: 600px) {
+  .request-page {
+    width: min(100% - 32px, 500px);
+    margin-top: 30px;
+  }
+
+  .request-heading h1 {
+    font-size: 29px;
+  }
+
+  .request-form {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 22px 18px;
+  }
+
+  .request-form .form-field.full-width,
+  .selected-product,
+  .request-actions,
+  #request-message {
+    grid-column: 1;
+  }
+
+  .request-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+}

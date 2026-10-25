@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buat Pesanan — NitipYuk</title>
+
+    <link rel="stylesheet" href="NitipYuk.css" />
+    <link rel="stylesheet" href="form.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" aria-label="Navigasi utama">
+      <a class="brand" href="NitipYuk.html">
+        <span class="brand-icon">
+          <img src="element/logoNitipYuk.png" alt="Logo NitipYuk" />
+        </span>
+        <span class="brand-text"><strong>NitipYuk</strong></span>
+      </a>
+
+      <form class="search" role="search" action="#">
+        <img class="search-icon" src="element/zoom.png" alt="" />
+        <input
+          type="search"
+          name="q"
+          placeholder="Cari produk atau brand..."
+          aria-label="Cari produk atau brand"
+        />
+        <button type="submit" aria-label="Filter pencarian">
+          <img src="element/settinghero.png" alt="" />
+        </button>
+      </form>
+
+      <div class="links">
+        <a href="NitipYuk.html">Beranda</a>
+        <a class="active" href="produk.html">Produk</a>
+        <a href="pesanan.html">Pesanan</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="nav-icon-button" type="button" aria-label="Keranjang">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 9H6"
+            />
+            <circle cx="10" cy="20" r="1.3" />
+            <circle cx="18" cy="20" r="1.3" />
+          </svg>
+        </button>
+
+        <button class="nav-icon-button" type="button" aria-label="Notifikasi">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+            <path d="M10 21h4" />
+          </svg>
+        </button>
+
+        <div class="account-area">
+          <a class="auth-link" href="profil.html">
+            <span class="auth-icon">
+              <img src="element/user.png" alt="" />
+            </span>
+            <span>Profil saya</span>
+          </a>
+
+          <details class="account-dropdown">
+            <summary aria-label="Buka menu akun">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+
+            <div class="account-dropdown-menu">
+              <a href="profil.html">Profil saya</a>
+              <a href="pesanan.html">Pesanan saya</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </nav>
+
+    <main class="request-page">
+      <header class="request-heading">
+        <p class="eyebrow">PESANAN TITIPAN</p>
+        <h1>Konfirmasi barang titipan</h1>
+        <p>Periksa barang pilihanmu, lalu lengkapi detail pesanannya.</p>
+      </header>
+
+      <form class="request-form" id="request-form">
+        <section class="selected-product" aria-label="Barang pilihan">
+          <p class="eyebrow">BARANG PILIHAN</p>
+          <h2 id="selected-item-name">Memuat barang...</h2>
+          <p id="selected-item-country"></p>
+        </section>
+
+        <div class="form-field">
+          <label for="item-quantity">Jumlah</label>
+          <input
+            id="item-quantity"
+            name="quantity"
+            type="number"
+            min="1"
+            value="1"
+            required
+          />
+        </div>
+
+        <div class="form-field full-width">
+          <label for="item-notes">Catatan barang</label>
+          <textarea
+            id="item-notes"
+            name="notes"
+            rows="4"
+            placeholder="Contoh: warna hitam, ukuran M, atau varian tertentu."
+          ></textarea>
+        </div>
+
+        <div class="form-field full-width">
+          <label for="shipping-address">Alamat pengiriman</label>
+          <select id="shipping-address" name="shippingAddress" required>
+            <option value="">Pilih alamat tersimpan</option>
+          </select>
+          <a class="address-link" href="profil.html#alamat"> Kelola alamat </a>
+        </div>
+
+        <div class="request-actions">
+          <a class="cancel-button" href="produk.html">Kembali ke produk</a>
+          <button class="submit-button" type="submit">Buat pesanan</button>
+        </div>
+
+        <p id="request-message" aria-live="polite"></p>
+      </form>
+    </main>
+
+    <script src="authentication.js"></script>
+    <script src="form.js"></script>
+  </body>
+</html>

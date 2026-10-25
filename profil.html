@@ -69,21 +69,33 @@
                 <path d="m6 9 6 6 6-6" />
               </svg>
             </summary>
+
             <div class="account-dropdown-menu">
               <a class="active" href="profil.html">Profil saya</a>
-              <a href="pesanan.html">Pesanan saya</a>
+              <a href="alamat.html">Alamat saya</a>
             </div>
           </details>
         </div>
       </div>
     </nav>
+
     <main class="settings-layout">
       <aside class="settings-sidebar">
         <p class="sidebar-title">AKUN SAYA</p>
         <a class="sidebar-link active" href="profil.html">Profil</a>
-        <a class="sidebar-link" href="pesanan.html">Pesanan saya</a>
-        <a class="sidebar-link" href="produk.html">Jelajahi produk</a>
-        <a class="sidebar-link" href="NitipYuk.html">Kembali ke beranda</a>
+        <a class="sidebar-link" href="alamat.html">Alamat</a>
+        <a class="sidebar-link" href="#metode-pembayaran">
+          Metode pembayaran
+        </a>
+
+        <button
+          class="sidebar-link logout-button"
+          id="logout-button"
+          type="button"
+        >
+          <img class="sidebar-icon" src="element/logout.png" alt="" />
+          <span>Keluar</span>
+        </button>
       </aside>
 
       <section class="profile-content">
@@ -109,7 +121,7 @@
               <p id="profile-role">Buyer</p>
             </div>
 
-            <label class="photo-button" for="photo-input"> Ganti foto </label>
+            <label class="photo-button" for="photo-input">Ganti foto</label>
             <input
               id="photo-input"
               class="photo-input"
@@ -119,42 +131,78 @@
           </div>
         </section>
 
-        <form id="profile-form" class="profile-form">
+        <section class="profile-stats" aria-label="Ringkasan pesanan">
+          <article class="stat-card">
+            <span class="stat-icon" aria-hidden="true">📦</span>
+            <strong id="stat-total">0</strong>
+            <span>Total titipan</span>
+          </article>
+
+          <article class="stat-card">
+            <span class="stat-icon" aria-hidden="true">🚚</span>
+            <strong id="stat-active">0</strong>
+            <span>Sedang berjalan</span>
+          </article>
+
+          <article class="stat-card">
+            <span class="stat-icon" aria-hidden="true">✓</span>
+            <strong id="stat-complete">0</strong>
+            <span>Selesai</span>
+          </article>
+        </section>
+
+        <section class="profile-info-card">
           <div class="form-heading">
             <div>
-              <h2>Informasi akun</h2>
-              <p>Perbarui nama dan nomor teleponmu.</p>
+              <h2>Informasi pribadi</h2>
+              <p>Informasi akun yang kamu gunakan di NitipYuk.</p>
             </div>
           </div>
 
-          <div class="form-grid">
-            <div class="form-field">
-              <label for="profile-name">Nama lengkap</label>
-              <input id="profile-name" name="name" type="text" required />
+          <dl class="profile-info-list">
+            <div class="profile-info-row">
+              <dt>Nama lengkap</dt>
+              <dd id="profile-info-name">-</dd>
             </div>
 
-            <div class="form-field">
-              <label for="profile-phone">Nomor telepon</label>
-              <input id="profile-phone" name="phone" type="tel" required />
+            <div class="profile-info-row">
+              <dt>Nomor telepon</dt>
+              <dd id="profile-info-phone">-</dd>
             </div>
 
-            <div class="form-field full-width">
-              <label for="profile-email">Email</label>
-              <input id="profile-email" name="email" type="email" readonly />
-              <small>Email tidak dapat diubah di halaman ini.</small>
+            <div class="profile-info-row">
+              <dt>Email</dt>
+              <dd id="profile-info-email">-</dd>
             </div>
 
-            <div id="shop-field" class="form-field full-width" hidden>
-              <label for="profile-shop">Nama toko</label>
-              <input id="profile-shop" name="shopName" type="text" />
+            <div class="profile-info-row">
+              <dt>Peran akun</dt>
+              <dd id="profile-info-role">-</dd>
+            </div>
+
+            <div class="profile-info-row" id="profile-info-shop-row" hidden>
+              <dt>Nama toko</dt>
+              <dd id="profile-info-shop">-</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="account-section payment-section" id="metode-pembayaran">
+          <div class="account-section-heading">
+            <div>
+              <p class="eyebrow">PEMBAYARAN</p>
+              <h2>Metode pembayaran</h2>
+              <p>Metode pembayaran yang kamu simpan akan tampil di sini.</p>
             </div>
           </div>
 
-          <div class="form-actions">
-            <p id="save-message" aria-live="polite"></p>
-            <button class="save-button" type="submit">Simpan perubahan</button>
+          <div class="payment-empty">
+            <p>Belum ada metode pembayaran tersimpan.</p>
+            <button class="add-payment-button" type="button" disabled>
+              + Tambah metode pembayaran
+            </button>
           </div>
-        </form>
+        </section>
       </section>
     </main>
 

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keranjang — NitipYuk</title>
+
+    <link rel="stylesheet" href="NitipYuk.css" />
+    <link rel="stylesheet" href="keranjang.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" aria-label="Navigasi utama">
+      <a class="brand" href="NitipYuk.html">
+        <span class="brand-icon">
+          <img src="element/logoNitipYuk.png" alt="Logo NitipYuk" />
+        </span>
+        <span class="brand-text"><strong>NitipYuk</strong></span>
+      </a>
+
+      <form class="search" role="search" action="#">
+        <img class="search-icon" src="element/zoom.png" alt="" />
+        <input
+          type="search"
+          name="q"
+          placeholder="Cari produk atau brand..."
+          aria-label="Cari produk atau brand"
+        />
+        <button type="submit" aria-label="Filter pencarian">
+          <img src="element/settinghero.png" alt="" />
+        </button>
+      </form>
+
+      <div class="links">
+        <a href="NitipYuk.html">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="pesanan.html">Pesanan</a>
+      </div>
+
+      <div class="nav-actions">
+        <a
+          class="nav-icon-button active"
+          href="keranjang.html"
+          aria-label="Keranjang"
+          aria-current="page"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 9H6"
+            />
+            <circle cx="10" cy="20" r="1.3" />
+            <circle cx="18" cy="20" r="1.3" />
+          </svg>
+        </a>
+
+        <button class="nav-icon-button" type="button" aria-label="Notifikasi">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+            <path d="M10 21h4" />
+          </svg>
+        </button>
+
+        <div class="account-area">
+          <a class="auth-link" href="profil.html">
+            <span class="auth-icon">
+              <img src="element/user.png" alt="" />
+            </span>
+            <span>Profil saya</span>
+          </a>
+
+          <details class="account-dropdown">
+            <summary aria-label="Buka menu akun">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+
+            <div class="account-dropdown-menu">
+              <a href="profil.html">Profil saya</a>
+              <a href="pesanan.html">Pesanan saya</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </nav>
+
+    <main class="cart-page">
+      <header class="cart-heading">
+        <div>
+          <p class="eyebrow">NITIPYUK</p>
+          <h1>Keranjang saya</h1>
+          <p>Periksa barang pilihanmu sebelum membuat pesanan.</p>
+        </div>
+
+        <a class="continue-shopping" href="produk.html">
+          Lanjut belanja <span aria-hidden="true">→</span>
+        </a>
+      </header>
+
+      <div class="cart-layout">
+        <section class="cart-items-section" aria-label="Barang di keranjang">
+          <div class="cart-select-all">
+            <label>
+              <input id="select-all" type="checkbox" />
+              <span>Pilih semua barang</span>
+            </label>
+
+            <button id="clear-cart" class="text-button" type="button">
+              Hapus semua
+            </button>
+          </div>
+
+          <div id="cart-items" class="cart-items">
+            <!-- Barang keranjang akan dimunculkan oleh keranjang.js -->
+          </div>
+
+          <div id="cart-empty" class="cart-empty" hidden>
+            <div class="cart-empty-icon" aria-hidden="true">🛍️</div>
+            <h2>Keranjangmu masih kosong</h2>
+            <p>Yuk, cari barang yang ingin kamu titipkan.</p>
+            <a class="primary-button" href="produk.html">Jelajahi produk</a>
+          </div>
+        </section>
+
+        <aside class="cart-summary" aria-label="Ringkasan keranjang">
+          <h2>Ringkasan belanja</h2>
+
+          <div class="summary-row">
+            <span>Jumlah barang dipilih</span>
+            <strong id="summary-quantity">0</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Subtotal barang</span>
+            <strong id="summary-subtotal">Rp0</strong>
+          </div>
+
+          <p class="summary-note">
+            Biaya jasa titip dan pengiriman akan diinformasikan saat pesanan
+            dibuat.
+          </p>
+
+          <button id="checkout-button" class="checkout-button" type="button">
+            Buat pesanan
+          </button>
+        </aside>
+      </div>
+    </main>
+
+    <script src="authentication.js"></script>
+    <script src="keranjang.js"></script>
+  </body>
+</html>

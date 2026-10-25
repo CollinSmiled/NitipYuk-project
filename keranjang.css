@@ -1,0 +1,248 @@
+/* Halaman keranjang */
+.cart-page {
+  width: min(100% - 48px, 1280px);
+  margin: 42px auto 72px;
+  color: #4c263b;
+}
+
+.cart-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.cart-heading .eyebrow {
+  margin: 0 0 8px;
+  color: #8b667a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.cart-heading h1 {
+  margin: 0;
+  font-size: 34px;
+}
+
+.cart-heading > div > p:last-child {
+  margin: 9px 0 0;
+  color: #887b83;
+  font-size: 17px;
+}
+
+.continue-shopping {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1px solid #eadde5;
+  border-radius: 24px;
+  background: #fff;
+  color: #4c263b;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.continue-shopping:hover {
+  background: #f8e8f0;
+}
+
+/* Kolom barang dan ringkasan */
+.cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: start;
+  gap: 22px;
+}
+
+.cart-items-section,
+.cart-summary {
+  border: 1px solid #eadde5;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(76 38 59 / 5%);
+}
+
+.cart-items-section {
+  padding: 20px;
+}
+
+.cart-select-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eee5ea;
+}
+
+.cart-select-all label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #4c263b;
+  font-weight: 600;
+}
+
+.cart-page input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #4c1238;
+  cursor: pointer;
+}
+
+.text-button {
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: #9b4057;
+  font: inherit;
+  cursor: pointer;
+}
+
+.text-button:hover {
+  color: #70263b;
+  text-decoration: underline;
+}
+
+/* Tempat daftar barang */
+.cart-items {
+  display: grid;
+  gap: 16px;
+}
+
+/* Ringkasan total */
+.cart-summary {
+  position: sticky;
+  top: 24px;
+  padding: 24px;
+}
+
+.cart-summary h2 {
+  margin: 0 0 22px;
+  font-size: 21px;
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 14px 0;
+  color: #766872;
+}
+
+.summary-row strong {
+  color: #4c263b;
+}
+
+.summary-note {
+  margin: 20px 0;
+  padding-top: 16px;
+  border-top: 1px solid #eee5ea;
+  color: #887b83;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.checkout-button,
+.primary-button {
+  display: inline-flex;
+  width: 100%;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 24px;
+  background: #4c1238;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.checkout-button:hover,
+.primary-button:hover {
+  background: #64204d;
+}
+
+.checkout-button:disabled {
+  background: #cbbbc5;
+  cursor: not-allowed;
+}
+
+/* Tampilan keranjang kosong */
+.cart-empty {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 56px 20px;
+  text-align: center;
+}
+
+.cart-empty-icon {
+  font-size: 42px;
+}
+
+.cart-empty h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.cart-empty p {
+  margin: 0 0 8px;
+  color: #887b83;
+}
+
+.cart-empty .primary-button {
+  width: auto;
+  min-width: 190px;
+}
+
+/* Tampilan tablet */
+@media (max-width: 900px) {
+  .cart-layout {
+    grid-template-columns: minmax(0, 1fr) 290px;
+  }
+}
+
+/* Tampilan ponsel */
+@media (max-width: 700px) {
+  .cart-page {
+    width: min(100% - 32px, 560px);
+    margin-top: 28px;
+  }
+
+  .cart-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cart-heading h1 {
+    font-size: 29px;
+  }
+
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 460px) {
+  .cart-items-section {
+    padding: 16px;
+  }
+
+  .cart-select-all {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
