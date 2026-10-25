@@ -23,7 +23,7 @@
         <input
           type="search"
           name="q"
-          placeholder="Cari produk, brand (cth. Gentle Monster)"
+          placeholder="Cari produk atau brand..."
           aria-label="Cari produk atau brand"
         />
         <button type="submit" aria-label="Filter pencarian">
@@ -37,13 +37,44 @@
         <a href="pesanan.html">Pesanan</a>
       </div>
 
-      <div class="account">
-        <a class="auth-link" href="login.html">
-          <span class="auth-icon">
-            <img src="element/user.png" alt="" />
-          </span>
-          <span>Masuk / Daftar</span>
-        </a>
+      <div class="nav-actions">
+        <button class="nav-icon-button" type="button" aria-label="Keranjang">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.4L22 9H6"
+            />
+            <circle cx="10" cy="20" r="1.3" />
+            <circle cx="18" cy="20" r="1.3" />
+          </svg>
+        </button>
+
+        <button class="nav-icon-button" type="button" aria-label="Notifikasi">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+            <path d="M10 21h4" />
+          </svg>
+        </button>
+
+        <div class="account-area">
+          <a class="auth-link" href="login.html">
+            <span class="auth-icon">
+              <img src="element/user.png" alt="" />
+            </span>
+            <span>Masuk / Daftar</span>
+          </a>
+
+          <details class="account-dropdown">
+            <summary aria-label="Buka menu akun">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <div class="account-dropdown-menu">
+              <a href="profil.html">Profil saya</a>
+              <a href="pesanan.html">Pesanan saya</a>
+            </div>
+          </details>
+        </div>
       </div>
     </nav>
 
