@@ -91,7 +91,7 @@
       const requestedReturn = params.get("return") || "NitipYuk.html";
 
       const allowedReturn =
-        /^(NitipYuk\.html|produk\.html|pesanan\.html|form-titipan\.html)(\?[\w=&%-]*)?$/.test(
+        /^(NitipYuk\.html|produk\.html|pesanan\.html|form\.html|payment\.html|profil\.html|alamat\.html|keranjang\.html|notif\.html|berhasil\.html|profile\.html)(\?[\w=&%-]*)?$/.test(
           requestedReturn,
         )
           ? requestedReturn
@@ -129,9 +129,18 @@
         const email = emailInput.value.trim();
 
         // Demo: menyimpan email dan peran, bukan password.
+        let savedUser = null;
+        try {
+          savedUser = JSON.parse(
+            localStorage.getItem("nitipyuk-profile:" + email.toLowerCase()) ||
+            localStorage.getItem("nitipyuk-user") || "null",
+          );
+        } catch {
+          // Ignore invalid local demo data.
+        }
         localStorage.setItem(
           "nitipyuk-user",
-          JSON.stringify({ email, role: "buyer" }),
+          JSON.stringify({ ...(savedUser?.email?.toLowerCase() === email.toLowerCase() ? savedUser : {}), email, role: "buyer" }),
         );
 
         window.location.href = allowedReturn;

@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const requestedReturn = params.get("return") || "NitipYuk.html";
 
 const allowedReturn =
-  /^(NitipYuk\.html|produk\.html|pesanan\.html|form-titipan\.html)(\?[\w=&%-]*)?$/.test(
+  /^(NitipYuk\.html|produk\.html|pesanan\.html|form\.html|payment\.html|profil\.html|alamat\.html|keranjang\.html|notif\.html|berhasil\.html|profile\.html)(\?[\w=&%-]*)?$/.test(
     requestedReturn,
   )
     ? requestedReturn
@@ -88,7 +88,7 @@ form.addEventListener("submit", (event) => {
   let destination = allowedReturn;
 
   // Penitip tidak diteruskan ke form pemesanan Buyer.
-  if (role === "penitip" && destination.startsWith("form-titipan.html")) {
+  if (role === "penitip" && (destination.startsWith("form.html") || destination.startsWith("payment.html"))) {
     destination = "produk.html";
   }
 
