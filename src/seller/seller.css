@@ -179,4 +179,3 @@
 .chat-order-context a { margin-left: auto; color: var(--plum); }
 .chat-request-action { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; padding: 12px; }
 .chat-request-action small { color: var(--muted); font-size: 11px; line-height: 1.6; }
-.order-chat-link { display: inline-block; margin: 15px 0; }
