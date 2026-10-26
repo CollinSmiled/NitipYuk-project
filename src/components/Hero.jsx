@@ -17,11 +17,6 @@ export default function Hero() { return (<section className="hero" id="home">
               <img src="element/shopping.png" alt="" />
               Cari Barang Titipan
             </a>
-
-            <a className="button-secondary" href="request.html">
-              <img src="element/add.png" alt="" />
-              Request Titipan Baru
-            </a>
           </div>
           <p className="request-hero-note">Request lewat chat jastiper. Setelah regulasi dan stok dicek, barang ditambahkan ke katalog toko.</p>
         </div>
