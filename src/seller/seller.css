@@ -157,3 +157,19 @@
   .seller-bank-row .seller-card-actions { flex-direction: column; gap: 5px; }
   .seller-filter-row { gap: 0; margin-bottom: 15px; }
 }
+
+.request-steps { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; padding: 0; list-style: none; margin: 28px 0; }
+.request-steps li { background: #f5e4ed; border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+.request-steps strong, .request-steps span { display: block; }
+.request-steps span { font-size: 12px; line-height: 1.7; margin-top: 10px; color: var(--muted); }
+.request-form { max-width: 760px; }
+.request-list { padding: 0 16px; }
+.request-card { border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 16px 0; background: #fffafd; }
+.request-card h3 { margin: 8px 0; }
+.request-card p { font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+.request-check { display: flex !important; flex-direction: row !important; align-items: center; gap: 12px; }
+.request-check input { width: 18px !important; min-height: 18px; flex-shrink: 0; }
+.request-hero-note { font-size: 12px !important; }
+.seller-chat-sidebar a { text-decoration: none; }
+:target { scroll-margin-top: 180px; }
+@media(max-width:700px) { .request-steps { grid-template-columns: 1fr; gap: 8px; } .request-steps li { padding: 14px; } .seller-navbar .links { flex-wrap: wrap; } }

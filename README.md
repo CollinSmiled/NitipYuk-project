@@ -76,3 +76,11 @@ A new seller account gets an explicitly labeled set of sample orders, trips, rev
 Open trips from seller accounts in the same browser appear in buyer recommendations. Buying from a specific trip retains its seller and trip through the cart/form/address/payment flow, uses the trip's per-item shipping fee, and creates an order visible to that seller. Capacity and availability are checked again at confirmation. Each checkout groups products from one trip; unselected cart items and the same product from other trips are preserved.
 
 Seller status updates to those local buyer orders also update buyer tracking and notifications. The earnings ledger releases demo proceeds only after an order reaches `Selesai`. Cross-device/multi-user synchronization would require a backend.
+
+## Request barang melalui chat
+
+Buyer memilih jastiper/trip di `request.html` dan mengirim nama, jumlah, link referensi, serta varian sebagai pesan pertama. `chat.html` menyimpan percakapan dan menampilkan hasil pengecekan. Request belum menjadi pesanan dan belum dapat dibeli.
+
+Seller membuka `seller-pesan.html`, memeriksa regulasi dan ketersediaan, lalu menyetujui atau menolak disertai catatan. Penerbitan diblokir sebelum kedua pengecekan dikonfirmasi. Request yang disetujui bisa ditambahkan ke katalog dengan nama, kategori, dan harga. Foto kategori dipakai sebagai ilustrasi. Halaman `seller-katalog.html` menampilkan barang yang sudah diterbitkan; buyer mendapatkan link katalog melalui chat dan dapat melanjutkan checkout biasa. Barang terikat pada seller dan trip asalnya.
+
+Navbar buyer dan seller tetap terlihat saat scroll. Untuk pengujian demo, bergantian login Buyer dan Seller menggunakan browser yang sama; backend tetap diperlukan untuk chat lintas perangkat.

@@ -1,0 +1,16 @@
+import { useState } from 'react';
+import { publishRequest, requestLabels, reviewRequest } from '../lib/requests';
+import { Modal } from './SellerUI';
+
+export default function RequestReview({ user, chat, onChange }) {
+  const [publishing, setPublishing] = useState(null), [error, setError] = useState('');
+  function review(event, request) {
+    event.preventDefault(); const values = new FormData(event.currentTarget);
+    try { reviewRequest(user.email, chat.id, request.id, { status: values.get('decision'), regulationsChecked: values.has('regulations'), available: values.has('available'), note: values.get('note') }); onChange(); setError(''); } catch (error) { setError(error.message); }
+  }
+  function publish(event) {
+    event.preventDefault();
+    try { publishRequest(user.email, chat.id, publishing.id, Object.fromEntries(new FormData(event.currentTarget))); onChange(); setPublishing(null); setError(''); } catch (error) { setError(error.message); }
+  }
+  return <div className="request-list">{chat.requests?.map(request => <article className="request-card" key={request.id}><p className="eyebrow">REQUEST BARANG · {requestLabels[request.status]}</p><h3>{request.name} ×{request.quantity}</h3>{request.link && <a href={request.link} target="_blank" rel="noreferrer">Buka referensi barang ↗</a>}<p>{request.notes}</p>{request.status === 'pending' && <form className="field-form" onSubmit={event => review(event, request)}><label className="request-check"><input type="checkbox" name="regulations" /> Regulasi barang sudah dicek dan barang boleh dititipkan</label><label className="request-check"><input type="checkbox" name="available" /> Barang tersedia untuk trip ini</label><label>Hasil pengecekan<select name="decision"><option value="approved">Setujui request</option><option value="rejected">Tidak bisa dititipkan</option></select></label><label>Catatan untuk buyer<textarea name="note" required maxLength="2000" rows="2" placeholder="Jelaskan hasil pengecekan dan ketersediaan" /></label><button className="button-outline">Kirim hasil pengecekan</button></form>}{request.note && <p>{request.note}</p>}{request.status === 'approved' && <button className="button-solid" onClick={() => { setPublishing(request); setError(''); }}>Tambahkan ke katalog toko</button>}{request.status === 'published' && <a href={`produk.html?buyer=1&trip=${request.tripId}`}>Lihat di katalog toko →</a>}</article>)}<p className="error-message" role="alert">{error}</p>{publishing && <Modal title="Tambahkan ke katalog" subtitle="Barang sudah lolos pengecekan. Lengkapi informasi untuk buyer." onClose={() => setPublishing(null)}><form className="field-form" onSubmit={publish}><label>Nama produk<input name="name" defaultValue={publishing.name} required maxLength="150" /></label><label>Kategori<select name="category"><option>Fashion</option><option>Makanan</option><option>Skincare</option><option>Lainnya</option></select></label><label>Harga per barang (Rp)<input name="price" type="number" min="1" max="100000000" step="1" required /></label><p className="soft-notice">Ongkir mengikuti trip. Foto kategori dipakai sebagai ilustrasi produk.</p><p className="error-message" role="alert">{error}</p><button className="button-solid">Terbitkan di katalog</button></form></Modal>}</div>;
+}

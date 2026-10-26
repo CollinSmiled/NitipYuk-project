@@ -1,3 +1,4 @@
+import Requests from './pages/Requests';
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -32,17 +33,18 @@ export default function App() {
   const page = path === 'profile.html' ? 'profil.html' : path;
   const unreadCount = user?.email ? notificationsFor(user.email).filter(item => !item.read).length : 0;
   const onCartChange = () => setCart(getCart());
-  if (isSeller(user) && page !== 'toko.html' && !new URLSearchParams(location.search).has('buyer')) {
+  if (isSeller(user) && page !== 'toko.html' && !['request.html', 'chat.html'].includes(page) && !new URLSearchParams(location.search).has('buyer')) {
     const aliases = { 'index.html': 'seller.html', 'NitipYuk.html': 'seller.html', 'pesanan.html': 'seller-pesanan.html', 'profil.html': 'seller-profil.html', 'notif.html': 'seller-notif.html' };
     return <SellerApp user={user} page={aliases[page] || page} onUserChange={setUser} />;
   }
   if (page.startsWith('seller') && !isSeller(user)) return <><Navbar user={user} unreadCount={unreadCount} cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)} page={page} onSearch={value => { location.href = 'produk.html?q=' + encodeURIComponent(value); }} /><main className="flow-page"><section className="flow-card empty-state"><h1>Masuk sebagai Seller</h1><p>Kelola trip, pesanan, dan tokomu di NitipYuk Seller.</p><a className="button-solid" href={`login.html?role=penitip&return=${encodeURIComponent(page + location.search)}`}>Masuk akun Seller</a></section></main></>;
-  const protectedPage = ['form.html', 'payment.html', 'profil.html', 'alamat.html', 'pesanan.html', 'notif.html', 'berhasil.html'].includes(page);
+  const protectedPage = ['request.html', 'chat.html', 'form.html', 'payment.html', 'profil.html', 'alamat.html', 'pesanan.html', 'notif.html', 'berhasil.html'].includes(page);
   let content;
-  if (protectedPage && (!user?.email || (['form.html', 'payment.html'].includes(page) && user.role !== 'buyer'))) {
+  if (protectedPage && (!user?.email || (['request.html', 'chat.html', 'form.html', 'payment.html'].includes(page) && user.role !== 'buyer'))) {
     const destination = encodeURIComponent(page + location.search);
     content = <main className="flow-page"><section className="flow-card empty-state"><h1>{page === "pesanan.html" ? "Pesananmu masih kosong" : page === "notif.html" ? "Masuk untuk melihat notifikasi" : "Masuk untuk melanjutkan titipanmu"}</h1><p>{page === "pesanan.html" ? "Masuk ke akun Buyer untuk melihat pesanan dan mengikuti perjalanan titipanmu." : "Gunakan akun Buyer untuk checkout dan mengikuti pesananmu."}</p><a className="button-solid" href={`login.html?return=${destination}`}>Masuk / Daftar</a></section></main>;
-  } else if (page === 'keranjang.html') content = <Cart cart={cart} onCartChange={onCartChange} />;
+  } else if (['request.html', 'chat.html'].includes(page)) content = <Requests user={user} chatPage={page === 'chat.html'} />;
+  else if (page === 'keranjang.html') content = <Cart cart={cart} onCartChange={onCartChange} />;
   else if (page === 'form.html') content = <CheckoutForm user={user} cart={cart} />;
   else if (page === 'payment.html') content = <Payment user={user} onCartChange={onCartChange} />;
   else if (page === 'pesanan.html') content = <Orders user={user} onNotificationsChange={onNotificationsChange} />;

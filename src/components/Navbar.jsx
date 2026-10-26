@@ -23,6 +23,7 @@ export default function Navbar({ onSearch, user, cartCount, page, unreadCount })
       </form>
 
       <div className="links">
+        <a className={['chat.html', 'request.html'].includes(page) ? 'active' : ''} href="chat.html">Chat jastiper</a>
         <a className={["index.html", "NitipYuk.html"].includes(page) ? "active" : ""} href="/">Beranda</a>
         <a className={page === "produk.html" ? "active" : ""} href="produk.html">Produk</a>
         <a className={page === "pesanan.html" ? "active" : ""} href="pesanan.html">Pesanan</a>

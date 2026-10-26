@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import Catalog from './Catalog';
+import { useEffect, useState } from 'react';
 import Dashboard from './Dashboard';
 import Trips from './Trips';
 import Orders from './Orders';
@@ -13,8 +14,10 @@ import './seller.css';
 export default function SellerApp({ user, page, onUserChange }) {
   const [data, setData] = useState(() => ensureSeller(user));
   const onChange = () => setData(getSeller(user.email));
+  useEffect(() => { const refresh = () => setData(getSeller(user.email)); window.addEventListener('storage', refresh); window.addEventListener('focus', refresh); return () => { window.removeEventListener('storage', refresh); window.removeEventListener('focus', refresh); }; }, [user.email]);
   let content;
-  if (page === 'seller-trip.html') content = <Trips user={user} data={data} onChange={onChange} />;
+  if (page === 'seller-katalog.html') content = <Catalog user={user} data={data} />;
+  else if (page === 'seller-trip.html') content = <Trips user={user} data={data} onChange={onChange} />;
   else if (page === 'seller-pesanan.html') content = <Orders user={user} data={data} onChange={onChange} />;
   else if (page === 'seller-pendapatan.html') content = <Finance user={user} data={data} onChange={onChange} />;
   else if (page === 'seller-pesan.html') content = <Messages user={user} data={data} onChange={onChange} />;

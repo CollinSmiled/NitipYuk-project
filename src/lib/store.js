@@ -1,7 +1,7 @@
-import { products } from '../products.js';
+import { catalogProducts } from './catalog.js';
 
 export const money = value => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(value);
-export const productById = id => products.find(product => product.id === id);
+export const productById = (id, storage = globalThis.localStorage) => catalogProducts(storage).find(product => product.id === id);
 export const accountKey = (name, email) => `nitipyuk-${name}:${String(email).toLowerCase()}`;
 export function read(key, fallback, storage = globalThis.localStorage) {
   try { const value = JSON.parse(storage.getItem(key)); return value ?? fallback; } catch { return fallback; }
@@ -18,11 +18,13 @@ export function validQuantity(value) {
   return Number.isInteger(number) && number >= 1 && number <= 99;
 }
 export function getCart(storage = globalThis.localStorage) {
-  return list('nitipyuk-cart', storage).filter(item => productById(item.id) && validQuantity(item.quantity));
+  return list('nitipyuk-cart', storage).filter(item => productById(item.id, storage) && validQuantity(item.quantity));
 }
 export const cartItemKey = item => `${item.id}:${item.tripId || ""}`;
 export function addToCart(id, storage = globalThis.localStorage, trip = null) {
-  if (!productById(id)) throw new Error('Produk tidak ditemukan.');
+  const product = productById(id, storage);
+  if (!product) throw new Error('Produk tidak ditemukan.');
+  if (product.tripId && (product.tripId !== trip?.id || product.sellerEmail !== trip?.sellerEmail)) throw new Error('Pilih trip milik seller produk ini.');
   const cart = getCart(storage);
   const existing = cart.find(item => item.id === id && (item.tripId || "") === (trip?.id || ""));
   if (existing) { existing.quantity = Math.min(99, existing.quantity + 1); existing.selected = true; }
@@ -36,14 +38,16 @@ export const totals = (items, trip = null) => {
   const service = items.length ? 5000 : 0;
   return { subtotal, shipping, service, total: subtotal + shipping + service };
 };
-export function snapshotItems(items) {
-  if (!items.length || items.some(item => !productById(item.id) || !validQuantity(item.quantity))) throw new Error('Periksa barang dan jumlah pesanan (1–99).');
-  return items.map(item => ({ ...productById(item.id), quantity: Number(item.quantity) }));
+export function snapshotItems(items, storage = globalThis.localStorage) {
+  if (!items.length || items.some(item => !productById(item.id, storage) || !validQuantity(item.quantity))) throw new Error('Periksa barang dan jumlah pesanan (1–99).');
+  return items.map(item => ({ ...productById(item.id, storage), quantity: Number(item.quantity) }));
 }
 export function createDraft({ email, items, address, notes, fromCart, trip }, storage = globalThis.localStorage) {
   if (!email || !address?.address?.trim() || !address?.recipient?.trim() || !address?.phone?.trim()) throw new Error('Lengkapi alamat pengiriman terlebih dahulu.');
+  const snapshots = snapshotItems(items, storage);
+  if (!trip && snapshots.some(item => item.tripId)) throw new Error('Pilih trip seller untuk barang ini.');
   const tripSnapshot = trip ? validateTrip(items, trip, storage) : null;
-  const draft = { trip: tripSnapshot, id: crypto.randomUUID(), userEmail: email, items: snapshotItems(items), address: { ...address }, notes, fromCart, createdAt: new Date().toISOString() };
+  const draft = { trip: tripSnapshot, id: crypto.randomUUID(), userEmail: email, items: snapshots, address: { ...address }, notes, fromCart, createdAt: new Date().toISOString() };
   write(accountKey('checkout', email), draft, storage);
   return draft;
 }
@@ -84,7 +88,7 @@ function validateTrip(items, requested, storage) {
   if (!trip || trip.status !== 'open') throw new Error('Trip tidak lagi dibuka. Pilih trip lainnya.');
   const orders = [...(data.orders || []), ...list('nitipyuk-orders', storage).filter(order => order.sellerEmail?.toLowerCase() === requested.sellerEmail.toLowerCase())];
   const used = orders.filter(order => order.tripId === trip.id && order.status !== 'Dibatalkan').reduce((sum, order) => sum + order.items.reduce((count, item) => count + item.quantity, 0), 0);
-  if (items.some(item => productById(item.id)?.country !== trip.country)) throw new Error('Pilih barang dari negara tujuan trip ini.');
+  if (items.some(item => { const product = productById(item.id, storage); return product?.country !== trip.country || product?.tripId && (product.tripId !== trip.id || product.sellerEmail !== requested.sellerEmail.toLowerCase()); })) throw new Error('Pilih barang dari katalog seller dan negara tujuan trip ini.');
   if (used + items.reduce((sum, item) => sum + Number(item.quantity), 0) > trip.capacity) throw new Error('Slot trip tidak cukup. Kurangi jumlah barang atau pilih trip lain.');
   return { id: trip.id, title: trip.title, country: trip.country, shipping: trip.shipping, arrival: trip.arrival, customs: trip.customs, sellerEmail: requested.sellerEmail, shopId: data.shopId, shopName: data.shop.name };
 }

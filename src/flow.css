@@ -72,7 +72,7 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .error-message { color: #ac2441; font-size: 14px; }
 .error-message:empty { display: none; }
 .payment-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(330px, 1fr); gap: 24px; align-items: start; }
-.order-summary { position: sticky; top: 20px; }
+.order-summary { position: sticky; top: 110px; }
 .order-summary details { border-bottom: 1px solid var(--line); padding: 15px 0; }
 .order-summary summary { cursor: pointer; font-size: 13px; }
 .order-summary summary strong { float: right; font-size: 13px; }

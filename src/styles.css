@@ -15,6 +15,9 @@ body {
 
 /* Navbar */
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   min-height: 82px;
   display: flex;
   align-items: center;

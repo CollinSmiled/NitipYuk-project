@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createRequest, buyerConversations, sendBuyerMessage, reviewRequest, publishRequest } from '../src/lib/requests.js';
+import { catalogProducts } from '../src/lib/catalog.js';
 import { addToCart, completeOrder, createDraft, getCart, totals } from '../src/lib/store.js';
 import { notificationsFor } from '../src/lib/orderStatus.js';
 import { buyerTrips, earnings, ensureSeller, getSeller, occupiedSlots, promoteTrip, readChat, saveBank, saveTrip, sellerOrders, sendMessage, setTripStatus, updateSellerOrder, withdraw } from '../src/seller/sellerStore.js';
@@ -7,6 +9,41 @@ const user = { email: 'seller@example.test', name: 'Seller Demo', role: 'penitip
 const address = { recipient: 'Buyer Demo', phone: '080000000000', address: 'Alamat contoh' };
 function database() { const map = new Map(); return { get length() { return map.size; }, key: index => [...map.keys()][index], getItem: key => map.get(key) ?? null, setItem: (key, value) => map.set(key, value), removeItem: key => map.delete(key) }; }
 function setup() { const db = database(); const data = ensureSeller(user, db); return { db, data, trip: buyerTrips(db).find(item => item.country === 'Korea Selatan') }; }
+
+test('request stays in chat until the seller checks regulations and availability and publishes it', () => {
+  const { db, data, trip } = setup(), buyer = { role: 'buyer', email: 'request-buyer@example.test', name: 'Buyer' };
+  const { chatId, request } = createRequest(buyer, data.shopId, { name: 'Sunscreen SPF 50', quantity: 2, tripId: trip.id }, db);
+  assert.equal(sellerOrders(user.email, db).length, 5);
+  assert.equal(catalogProducts(db).length, 3);
+  assert.equal(buyerConversations(buyer.email, db)[0].requests[0].status, 'pending');
+  assert.equal(buyerConversations('other@example.test', db).length, 0);
+  assert.throws(() => publishRequest(user.email, chatId, request.id, { name: request.name, category: 'Skincare', price: 100000 }, db));
+  assert.throws(() => reviewRequest(user.email, chatId, request.id, { status: 'approved', regulationsChecked: true, available: false, note: 'Belum ada stok' }, db));
+  reviewRequest(user.email, chatId, request.id, { status: 'approved', regulationsChecked: true, available: true, note: 'Boleh dititipkan dan tersedia' }, db);
+  const product = publishRequest(user.email, chatId, request.id, { name: request.name, category: 'Skincare', price: 100000 }, db);
+  assert.equal(catalogProducts(db).at(-1).sellerEmail, user.email);
+  assert.equal(buyerConversations(buyer.email, db)[0].requests[0].status, 'published');
+  assert.throws(() => publishRequest(user.email, chatId, request.id, { name: request.name, category: 'Skincare', price: 100000 }, db));
+  assert.throws(() => createDraft({ email: buyer.email, items: [{ id: product.id, quantity: 2 }], address }, db));
+  createDraft({ email: buyer.email, items: [{ id: product.id, quantity: 2 }], address, trip }, db);
+  const order = completeOrder(buyer.email, 'qris', db);
+  assert.equal(order.pricing.total, 235000);
+  assert.equal(sellerOrders(user.email, db).length, 6);
+});
+
+test('rejected requests cannot be published; conversations and requests stay with their seller and buyer', () => {
+  const { db, data, trip } = setup(), buyer = { role: 'buyer', email: 'buyer@example.test' };
+  const { chatId, request } = createRequest(buyer, data.shopId, { name: 'Barang contoh', quantity: 1, tripId: trip.id }, db);
+  const other = ensureSeller({ ...user, email: 'other@example.test' }, db);
+  assert.throws(() => createRequest(buyer, other.shopId, { name: 'Barang', quantity: 1, tripId: trip.id }, db));
+  assert.throws(() => reviewRequest('other@example.test', chatId, request.id, { status: 'approved', regulationsChecked: true, available: true, note: 'ok' }, db));
+  assert.throws(() => sendBuyerMessage({ ...buyer, email: 'stranger@example.test' }, user.email, chatId, 'Hi', db));
+  sendBuyerMessage(buyer, user.email, chatId, 'Apakah stok ada?', db);
+  assert.equal(getSeller(user.email, db).chats[0].messages.length, 2);
+  reviewRequest(user.email, chatId, request.id, { status: 'rejected', note: 'Tidak tersedia' }, db);
+  assert.throws(() => publishRequest(user.email, chatId, request.id, { name: request.name, category: 'Lainnya', price: 100000 }, db));
+  assert.equal(catalogProducts(db).length, 3);
+});
 
 test('seller demo persists one store per account and balances match its transactions', () => {
   const { db, data } = setup();

@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const requestedReturn = params.get("return") || "NitipYuk.html";
 
 const allowedReturn =
-  /^(NitipYuk\.html|produk\.html|pesanan\.html|form\.html|payment\.html|profil\.html|alamat\.html|keranjang\.html|notif\.html|berhasil\.html|profile\.html|seller\.html|seller-trip\.html|seller-pesanan\.html|seller-pendapatan\.html|seller-pesan\.html|seller-notif\.html|seller-profil\.html|seller-toko\.html|seller-rekening\.html|toko\.html)(\?[\w=&%-]*)?$/.test(
+  /^(NitipYuk\.html|produk\.html|pesanan\.html|form\.html|payment\.html|profil\.html|alamat\.html|keranjang\.html|notif\.html|berhasil\.html|profile\.html|request\.html|chat\.html|seller-katalog\.html|seller\.html|seller-trip\.html|seller-pesanan\.html|seller-pendapatan\.html|seller-pesan\.html|seller-notif\.html|seller-profil\.html|seller-toko\.html|seller-rekening\.html|toko\.html)(\?[\w=&%-]*)?$/.test(
     requestedReturn,
   )
     ? requestedReturn

@@ -121,7 +121,7 @@ export function openConversation(email, orderId, storage = globalThis.localStora
 export function readChat(email, id, storage = globalThis.localStorage) { return update(email, data => { const chat = data.chats.find(item => item.id === id); if (chat) chat.unread = 0; }, storage); }
 export function sendMessage(email, id, text, storage = globalThis.localStorage) {
   if (!text?.trim() || text.trim().length > 2000) throw new Error('Pesan harus berisi 1–2.000 karakter.');
-  return update(email, data => { const chat = data.chats.find(item => item.id === id); if (!chat) throw new Error('Percakapan tidak ditemukan.'); chat.messages.push({ id: crypto.randomUUID(), from: 'seller', text: text.trim(), at: new Date().toISOString() }); }, storage);
+  return update(email, data => { const chat = data.chats.find(item => item.id === id); if (!chat) throw new Error('Percakapan tidak ditemukan.'); chat.messages.push({ id: crypto.randomUUID(), from: 'seller', text: text.trim(), at: new Date().toISOString() }); chat.buyerUnread = (chat.buyerUnread || 0) + 1; }, storage);
 }
 export function sellerNotifications(email, storage = globalThis.localStorage) {
   const data = getSeller(email, storage);
