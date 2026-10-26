@@ -57,3 +57,22 @@ The implementation follows the requested two-button, cart-table, and payment-sum
 All shared navigation bars link the cart icon to `keranjang.html` and the bell to `notif.html`. Profile shows saved addresses with add/edit links. Order status events generate in-app notifications; this demo does not request browser push permissions or send external notifications.
 
 Logout returns to the guest homepage, clears active checkout details, and hides account orders and notifications. Guest product purchase links open login with a safe local return path. Addresses, profile details, payment preference, completed orders, and notification read state remain available when the same demo email logs in again. These are local demo behaviors, not server-backed account verification.
+
+## Seller area
+
+Select **Seller / Penjual** on the login page, or register with the seller role. Seller accounts open a dedicated dashboard and navigation inspired by the supplied reference screenshots.
+
+- `seller.html`: summary cards, latest orders, and active trips.
+- `seller-trip.html`: trip filters, create/edit modal, trip state, capacity, per-item shipping, and a simulated 7-day promotion.
+- `seller-pesanan.html`: incoming orders, buyer/ID search, status filters, timeline updates, and buyer chat links.
+- `seller-pendapatan.html`: available/held/released balances, 5% product commission, transaction filters, and simulated withdrawals.
+- `seller-pesan.html`: local conversation list, unread counts, quick replies, and persisted replies.
+- `seller-notif.html`: account-scoped order, funds, review, and trip notifications with read state.
+- `seller-profil.html`, `seller-toko.html`, `seller-rekening.html`: personal details/photo, store profile and policies, and bank preferences.
+- `toko.html?shop=...`: public-view store preview with currently open trips.
+
+A new seller account gets an explicitly labeled set of sample orders, trips, reviews, conversations, and ledger entries. Profiles and operational data are stored under `nitipyuk-seller:<email>` in the browser. No real bank transfers, external messages, identity verification, or server-backed password changes are performed.
+
+Open trips from seller accounts in the same browser appear in buyer recommendations. Buying from a specific trip retains its seller and trip through the cart/form/address/payment flow, uses the trip's per-item shipping fee, and creates an order visible to that seller. Capacity and availability are checked again at confirmation. Each checkout groups products from one trip; unselected cart items and the same product from other trips are preserved.
+
+Seller status updates to those local buyer orders also update buyer tracking and notifications. The earnings ledger releases demo proceeds only after an order reaches `Selesai`. Cross-device/multi-user synchronization would require a backend.

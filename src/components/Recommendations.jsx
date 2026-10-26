@@ -1,7 +1,10 @@
+import { buyerTrips, dateLabel, tripImage } from '../seller/sellerStore';
 import { useRef } from 'react';
 export default function Recommendations() {
  const carousel = useRef(null);
  function scroll(direction) { const el = carousel.current; el?.scrollBy({left: direction * (el.firstElementChild.offsetWidth + 20), behavior: 'smooth'}); }
+ const trips = buyerTrips();
+ if (trips.length) return <section className="recommendations"><div className="recommendation-heading"><div><h2>Rekomendasi untukmu</h2><p>Trip yang dibuka seller di demo ini.</p></div><div className="carousel-controls"><button className="carousel-button" aria-label="Geser ke kiri" onClick={() => scroll(-1)}>‹</button><button className="carousel-button" aria-label="Geser ke kanan" onClick={() => scroll(1)}>›</button></div></div><div className="carousel" ref={carousel}>{trips.map(trip => <a className="trip-card" key={trip.id} href={`produk.html?trip=${trip.id}&shop=${trip.shopId}`}><img src={`element/${tripImage(trip.country)}.jpg`} alt={trip.city} /><span className="trip-tag">{new Date(trip.promotedUntil) > new Date() ? 'Trending' : 'Dibuka'}</span><div className="trip-info"><p>{trip.country}</p><h3>{trip.title}</h3><span>{trip.shopName} · Estimasi {dateLabel(trip.arrival)} · {Math.max(0, trip.capacity - trip.used)} slot</span></div></a>)}</div></section>;
  return (<section className="recommendations" id="rekomendasi">
         <div className="recommendation-heading">
           <div>

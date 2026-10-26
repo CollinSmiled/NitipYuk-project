@@ -1,0 +1,11 @@
+import { useState } from 'react';
+import { dateLabel, readSellerNotifications, sellerNotifications } from './sellerStore';
+import { BagIcon, Empty, PageHeading, Tabs } from './SellerUI';
+
+export default function SellerNotifications({ user, onChange }) {
+  const [filter, setFilter] = useState('Semua'), [error, setError] = useState(''), [showInfo, setShowInfo] = useState(true);
+  const items = sellerNotifications(user.email), unread = items.filter(item => !item.read).length;
+  const visible = items.filter(item => filter === 'Semua' || filter === 'Belum dibaca' && !item.read || item.category === filter);
+  function mark(ids) { try { readSellerNotifications(user.email, ids); onChange(); return true; } catch (error) { setError(error.message); return false; } }
+  return <div className="seller-notifications"><PageHeading eyebrow="KABAR UNTUKMU" title="Notifikasi" text="Ikuti pesanan baru, dana cair, dan kabar tripmu." />{showInfo && <aside className="notification-info"><span aria-hidden="true">♧</span><p>Pesanan baru dan dana yang cair muncul di sini. Klik notifikasi untuk langsung ke halaman terkait.</p><button className="text-button" aria-label="Tutup informasi notifikasi" onClick={() => setShowInfo(false)}>×</button></aside>}<div className="heading-actions"><h2>Semua kabar {unread > 0 && <span className="unread-pill">{unread}</span>}</h2><button className="text-button" disabled={!unread} onClick={() => mark(items.map(item => item.id))}>Tandai semua dibaca</button></div><Tabs options={['Semua', 'Belum dibaca', 'Pesanan', 'Dana', 'Ulasan', 'Trip']} value={filter} onChange={setFilter} label="Kategori notifikasi seller" /><p className="error-message" role="alert">{error}</p><div className="notification-list">{visible.map(item => <article className={`notification-card ${item.read ? 'read' : 'unread'}`} key={item.id}><a href={item.href} onClick={event => { if (!mark([item.id])) event.preventDefault(); }}><div><h3>{!item.read && <span className="unread-dot" />}{item.title}</h3><p>{item.message}</p><time>{dateLabel(item.at)}</time></div><span className="seller-item-icon" aria-hidden="true">{item.category === 'Dana' ? 'Rp' : item.category === 'Trip' ? '✈' : <BagIcon />}</span></a></article>)}</div>{!visible.length && <Empty title="Belum ada kabar pada kategori ini" text="Pesanan dan aktivitas tokomu akan muncul di sini." />}</div>;
+}

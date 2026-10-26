@@ -27,8 +27,8 @@ export function notificationsFor(email, storage = globalThis.localStorage) {
   return ordersFor(email, storage).flatMap(order => {
     const events = order.history?.length ? order.history : [{ step: orderStep(order), at: order.createdAt }];
     return events.map(event => ({
-      id: `${order.id}:${event.step}`, orderId: order.id, title: trackingSteps[event.step],
-      message: event.step === 3 ? 'Titipanmu sudah diterima. Terima kasih sudah menggunakan NitipYuk.' : event.step === 0 ? 'Pembayaran demo dikonfirmasi. Titipanmu sudah tercatat dan siap diproses.' : `Status titipanmu diperbarui: ${trackingSteps[event.step].toLowerCase()}.`,
+      id: `${order.id}:${event.step}`, orderId: order.id, title: event.step === -1 ? 'Pesanan dibatalkan' : trackingSteps[event.step],
+      message: event.step === -1 ? 'Pesanan ini dibatalkan oleh seller pada simulasi lokal.' : event.step === 3 ? 'Titipanmu sudah diterima. Terima kasih sudah menggunakan NitipYuk.' : event.step === 0 ? 'Pembayaran demo dikonfirmasi. Titipanmu sudah tercatat dan siap diproses.' : `Status titipanmu diperbarui: ${trackingSteps[event.step].toLowerCase()}.`,
       image: order.items?.[0]?.image || 'element/logoNitipYuk.png',
       product: order.items?.map(item => item.name).join(', ') || order.itemName,
       at: event.at, read: readIds.has(`${order.id}:${event.step}`),

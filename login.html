@@ -66,6 +66,7 @@
             required
           />
 
+          <fieldset class="login-roles"><legend>Masuk sebagai</legend><label><input type="radio" name="login-role" value="buyer" checked /> Buyer</label><label><input type="radio" name="login-role" value="penitip" /> Seller / Penjual</label></fieldset>
           <label for="password">Password</label>
           <input
             id="password"
@@ -91,7 +92,7 @@
       const requestedReturn = params.get("return") || "NitipYuk.html";
 
       const allowedReturn =
-        /^(NitipYuk\.html|produk\.html|pesanan\.html|form\.html|payment\.html|profil\.html|alamat\.html|keranjang\.html|notif\.html|berhasil\.html|profile\.html)(\?[\w=&%-]*)?$/.test(
+        /^(NitipYuk\.html|produk\.html|pesanan\.html|form\.html|payment\.html|profil\.html|alamat\.html|keranjang\.html|notif\.html|berhasil\.html|profile\.html|seller\.html|seller-trip\.html|seller-pesanan\.html|seller-pendapatan\.html|seller-pesan\.html|seller-notif\.html|seller-profil\.html|seller-toko\.html|seller-rekening\.html|toko\.html)(\?[\w=&%-]*)?$/.test(
           requestedReturn,
         )
           ? requestedReturn
@@ -101,6 +102,7 @@
         "register.html?return=" + encodeURIComponent(allowedReturn);
 
       const loginForm = document.querySelector("#login-form");
+      if (params.get('role') === 'penitip') loginForm.querySelector('[value="penitip"]').checked = true;
       const emailInput = document.querySelector("#email");
 
       function validateGmail() {
@@ -140,10 +142,13 @@
         }
         localStorage.setItem(
           "nitipyuk-user",
-          JSON.stringify({ ...(savedUser?.email?.toLowerCase() === email.toLowerCase() ? savedUser : {}), email, role: "buyer" }),
+          JSON.stringify({ ...(savedUser?.email?.toLowerCase() === email.toLowerCase() ? savedUser : {}), email, role: loginForm.querySelector('[name="login-role"]:checked').value }),
         );
 
-        window.location.href = allowedReturn;
+        const seller = loginForm.querySelector('[name="login-role"]:checked').value === 'penitip';
+        const account = JSON.parse(localStorage.getItem('nitipyuk-user'));
+        localStorage.setItem('nitipyuk-profile:' + email.toLowerCase(), JSON.stringify(account));
+        window.location.href = seller ? (allowedReturn.startsWith('seller') ? allowedReturn : 'seller.html') : (allowedReturn.startsWith('seller') ? 'NitipYuk.html' : allowedReturn);
       });
     </script>
     <script src="authentication.js"></script>

@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { cpSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const reactPages = ['NitipYuk.html', 'produk.html', 'keranjang.html', 'form.html', 'payment.html', 'profil.html', 'alamat.html', 'pesanan.html', 'notif.html', 'berhasil.html', 'profile.html'];
+const reactPages = ['NitipYuk.html', 'produk.html', 'keranjang.html', 'form.html', 'payment.html', 'profil.html', 'alamat.html', 'pesanan.html', 'notif.html', 'berhasil.html', 'profile.html', "seller.html", "seller-trip.html", "seller-pesanan.html", "seller-pendapatan.html", "seller-pesan.html", "seller-notif.html", "seller-profil.html", "seller-toko.html", "seller-rekening.html", "toko.html"];
 const legacyAuthFiles = ['login.html', 'register.html', 'login.css', 'register.css', 'NitipYuk.css', 'register.js', 'authentication.js'];
 export default defineConfig({
   plugins: [react(), {

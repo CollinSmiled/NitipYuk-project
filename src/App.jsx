@@ -15,6 +15,9 @@ import Notifications from './pages/Notifications';
 import Success from './pages/Success';
 import { notificationsFor } from './lib/orderStatus';
 import { getCart, read } from './lib/store';
+import SellerApp from './seller/SellerApp';
+import ShopPage from './seller/ShopPage';
+import { isSeller } from './seller/sellerStore';
 import './styles.css';
 import './flow.css';
 
@@ -29,6 +32,11 @@ export default function App() {
   const page = path === 'profile.html' ? 'profil.html' : path;
   const unreadCount = user?.email ? notificationsFor(user.email).filter(item => !item.read).length : 0;
   const onCartChange = () => setCart(getCart());
+  if (isSeller(user) && page !== 'toko.html' && !new URLSearchParams(location.search).has('buyer')) {
+    const aliases = { 'index.html': 'seller.html', 'NitipYuk.html': 'seller.html', 'pesanan.html': 'seller-pesanan.html', 'profil.html': 'seller-profil.html', 'notif.html': 'seller-notif.html' };
+    return <SellerApp user={user} page={aliases[page] || page} onUserChange={setUser} />;
+  }
+  if (page.startsWith('seller') && !isSeller(user)) return <><Navbar user={user} unreadCount={unreadCount} cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)} page={page} onSearch={value => { location.href = 'produk.html?q=' + encodeURIComponent(value); }} /><main className="flow-page"><section className="flow-card empty-state"><h1>Masuk sebagai Seller</h1><p>Kelola trip, pesanan, dan tokomu di NitipYuk Seller.</p><a className="button-solid" href={`login.html?role=penitip&return=${encodeURIComponent(page + location.search)}`}>Masuk akun Seller</a></section></main></>;
   const protectedPage = ['form.html', 'payment.html', 'profil.html', 'alamat.html', 'pesanan.html', 'notif.html', 'berhasil.html'].includes(page);
   let content;
   if (protectedPage && (!user?.email || (['form.html', 'payment.html'].includes(page) && user.role !== 'buyer'))) {
@@ -41,7 +49,8 @@ export default function App() {
   else if (page === 'notif.html') content = <Notifications user={user} onNotificationsChange={onNotificationsChange} />;
   else if (page === 'berhasil.html') content = <Success user={user} />;
   else if (page === 'alamat.html') content = <Addresses user={user} />;
+  else if (page === 'toko.html') content = <ShopPage user={user} />;
   else if (page === 'profil.html') content = <Profile user={user} onUserChange={setUser} />;
   else content = <main>{page !== 'produk.html' && <><Hero /><Benefits /><Recommendations /></>}<Countries selected={country} onSelect={setCountry} /><Products user={user} country={country} query={query} onCartChange={onCartChange} catalogue={page === 'produk.html'} /></main>;
-  return <><Navbar unreadCount={unreadCount} user={user} cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)} page={page} onSearch={value => { if (page === 'index.html' || page === 'NitipYuk.html' || page === 'produk.html') { setQuery(value); document.getElementById('produk')?.scrollIntoView({ behavior: 'smooth' }); } else location.href = `produk.html?q=${encodeURIComponent(value)}`; }} />{content}<footer className="site-footer"><strong>NitipYuk</strong><span>Dari wishlist, sampai depan pintu.</span><a href="keranjang.html">Keranjang</a><a href="pesanan.html">Pesanan</a><a href="notif.html">Notifikasi</a></footer></>;
+  return <><Navbar unreadCount={unreadCount} user={user} cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)} page={page} onSearch={value => { if (page === 'index.html' || page === 'NitipYuk.html' || page === 'produk.html') { setQuery(value); document.getElementById('produk')?.scrollIntoView({ behavior: 'smooth' }); } else location.href = `produk.html?q=${encodeURIComponent(value)}`; }} />{content}<footer className="site-footer"><strong>NitipYuk</strong><span>Dari wishlist, sampai depan pintu.</span><a href="keranjang.html">Keranjang</a><a href="pesanan.html">Pesanan</a><a href="notif.html">Notifikasi</a><a href="seller.html">NitipYuk Seller</a></footer></>;
 }

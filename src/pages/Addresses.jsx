@@ -14,10 +14,10 @@ export default function Addresses({ user }) {
   const checkout = new URLSearchParams(location.search).get('checkout') === '1';
   const savedForm = read(accountKey('form', user.email), null);
   const draft = read(accountKey('checkout', user.email), null);
-  const pending = savedForm?.items ? savedForm : draft ? { items: draft.items, notes: draft.notes, fromCart: draft.fromCart } : null;
+  const pending = savedForm?.items ? savedForm : draft ? { items: draft.items, notes: draft.notes, fromCart: draft.fromCart, trip: draft.trip } : null;
   const candidate = new URLSearchParams(location.search).get('return') || '';
   const returnTo = /^form\.html(\?[\w=&%-]*)?$/.test(candidate) ? candidate : '';
-  const backToForm = pending?.fromCart ? 'form.html?cart=1' : `form.html?barang=${pending?.items?.[0]?.id || ''}&jumlah=${pending?.items?.[0]?.quantity || 1}`;
+  const backToForm = pending?.fromCart ? 'form.html?cart=1' : `form.html?barang=${pending?.items?.[0]?.id || ''}&jumlah=${pending?.items?.[0]?.quantity || 1}${pending?.trip ? '&trip=' + pending.trip.id : ''}`;
   function persist(next) { write(storageKey, next); setAddresses(next); }
   function submit(event) {
     event.preventDefault();
@@ -34,7 +34,7 @@ export default function Addresses({ user }) {
   function continueCheckout() {
     try {
       if (!pending?.items?.length) throw new Error('Lengkapi detail barang terlebih dahulu.');
-      createDraft({ email: user.email, items: pending.items, notes: pending.notes, fromCart: pending.fromCart, address: addresses.find(item => item.id === selected) });
+      createDraft({ email: user.email, items: pending.items, notes: pending.notes, fromCart: pending.fromCart, trip: pending.trip, address: addresses.find(item => item.id === selected) });
       location.href = 'payment.html';
     } catch (error) { setError(error.message); }
   }

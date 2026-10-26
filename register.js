@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const requestedReturn = params.get("return") || "NitipYuk.html";
 
 const allowedReturn =
-  /^(NitipYuk\.html|produk\.html|pesanan\.html|form\.html|payment\.html|profil\.html|alamat\.html|keranjang\.html|notif\.html|berhasil\.html|profile\.html)(\?[\w=&%-]*)?$/.test(
+  /^(NitipYuk\.html|produk\.html|pesanan\.html|form\.html|payment\.html|profil\.html|alamat\.html|keranjang\.html|notif\.html|berhasil\.html|profile\.html|seller\.html|seller-trip\.html|seller-pesanan\.html|seller-pendapatan\.html|seller-pesan\.html|seller-notif\.html|seller-profil\.html|seller-toko\.html|seller-rekening\.html|toko\.html)(\?[\w=&%-]*)?$/.test(
     requestedReturn,
   )
     ? requestedReturn
@@ -57,6 +57,9 @@ emailInput.addEventListener("input", validateGmail);
 passwordInput.addEventListener("input", validatePasswordMatch);
 confirmInput.addEventListener("input", validatePasswordMatch);
 
+if (allowedReturn.startsWith("seller")) {
+  form.querySelector('input[name="role"][value="penitip"]').checked = true;
+}
 updateRoleFields();
 
 form.addEventListener("submit", (event) => {
@@ -85,7 +88,8 @@ form.addEventListener("submit", (event) => {
   // Demo saja: jangan simpan password atau file KTP di localStorage.
   localStorage.setItem("nitipyuk-user", JSON.stringify(user));
 
-  let destination = allowedReturn;
+  localStorage.setItem('nitipyuk-profile:' + user.email.toLowerCase(), JSON.stringify(user));
+  let destination = role === 'penitip' ? 'seller.html' : allowedReturn;
 
   // Penitip tidak diteruskan ke form pemesanan Buyer.
   if (role === "penitip" && (destination.startsWith("form.html") || destination.startsWith("payment.html"))) {

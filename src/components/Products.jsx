@@ -1,24 +1,28 @@
+import { buyerTrips } from '../seller/sellerStore';
 import { useState } from 'react';
 import { products } from '../products';
 import { addToCart, money } from '../lib/store';
 
 export default function Products({ country = 'Semua negara', query = '', onCartChange, catalogue = false, user }) {
+  const tripId = new URLSearchParams(location.search).get('trip');
+  const trip = buyerTrips().find(item => item.id === tripId);
   const [category, setCategory] = useState('Semua produk');
   const [notice, setNotice] = useState('');
   const visible = products.filter(product =>
+    (!tripId || trip && product.country === trip.country) &&
     (category === 'Semua produk' || product.category === category) &&
     (country === 'Semua negara' || product.country === country) &&
     `${product.name} ${product.category} ${product.country}`.toLowerCase().includes(query.trim().toLowerCase()));
   function add(product) {
     try {
-      addToCart(product.id);
+      addToCart(product.id, undefined, trip || null);
       onCartChange();
       setNotice(`${product.name} ditambahkan ke keranjang.`);
     } catch { setNotice('Keranjang belum bisa disimpan. Periksa penyimpanan browser.'); }
   }
   return <section className="product-categories" id="produk">
     <div className="product-categories__header">
-      <div><h2>{catalogue ? 'Semua barang titipan' : 'Mau titip apa?'}</h2><p>Pilihan produk jastip · Katalog contoh</p></div>
+      <div><h2>{catalogue ? 'Semua barang titipan' : 'Mau titip apa?'}</h2><p>{trip ? `${trip.title} · ${trip.shopName}` : "Pilihan produk jastip · Katalog contoh"}</p></div>
       {!catalogue && <a className="product-categories__all" href="produk.html">Semua produk <span aria-hidden="true">→</span></a>}
       {catalogue && <span>{visible.length} produk</span>}
     </div>
@@ -32,7 +36,7 @@ export default function Products({ country = 'Semua negara', query = '', onCartC
         <p className="product-price">Mulai dari <strong>{money(product.price)}</strong></p>
         <div className="product-actions">
           <button className="button-outline" type="button" onClick={() => add(product)}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M2 3h3l3 13h11l3-10H6M12 8v5M9.5 10.5h5" /><circle cx="10" cy="21" r="1" /><circle cx="18" cy="21" r="1" /></svg> Masukkan Keranjang</button>
-          <a className="button-solid" href={user?.role === "buyer" ? `form.html?barang=${product.id}` : `login.html?return=${encodeURIComponent(`form.html?barang=${product.id}`)}`}>Titip sekarang</a>
+          <a className="button-solid" href={user?.role === "buyer" ? `form.html?barang=${product.id}${trip ? `&trip=${trip.id}` : ""}` : `login.html?return=${encodeURIComponent(`form.html?barang=${product.id}${trip ? `&trip=${trip.id}` : ""}`)}`}>Titip sekarang</a>
         </div>
       </div>
     </article>)}</div>
