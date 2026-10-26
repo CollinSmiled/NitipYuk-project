@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createRequest, buyerConversations, sendBuyerMessage, reviewRequest, publishRequest } from '../src/lib/requests.js';
+import { createRequest, buyerConversations, ensureOrderConversation, sendBuyerMessage, reviewRequest, publishRequest, startBuyerConversation } from '../src/lib/requests.js';
 import { catalogProducts } from '../src/lib/catalog.js';
 import { addToCart, completeOrder, createDraft, getCart, totals } from '../src/lib/store.js';
 import { notificationsFor } from '../src/lib/orderStatus.js';
@@ -9,6 +9,36 @@ const user = { email: 'seller@example.test', name: 'Seller Demo', role: 'penitip
 const address = { recipient: 'Buyer Demo', phone: '080000000000', address: 'Alamat contoh' };
 function database() { const map = new Map(); return { get length() { return map.size; }, key: index => [...map.keys()][index], getItem: key => map.get(key) ?? null, setItem: (key, value) => map.set(key, value), removeItem: key => map.delete(key) }; }
 function setup() { const db = database(); const data = ensureSeller(user, db); return { db, data, trip: buyerTrips(db).find(item => item.country === 'Korea Selatan') }; }
+
+test('paid orders open one conversation with the correct seller and remain available after a trip closes', () => {
+  const { db, data, trip } = setup(), buyer = { role: 'buyer', email: 'buyer@example.test', name: 'Buyer' };
+  createDraft({ email: buyer.email, items: [{ id: 'tas-mini', quantity: 1 }], address, trip }, db);
+  const order = completeOrder(buyer.email, 'qris', db);
+  const chatId = ensureOrderConversation(buyer, order.id, db);
+  assert.equal(ensureOrderConversation(buyer, order.id, db), chatId);
+  assert.equal(buyerConversations(buyer.email, db)[0].sellerEmail, user.email);
+  assert.equal(buyerConversations(buyer.email, db)[0].orderId, order.id);
+  const request = createRequest(buyer, data.shopId, { name: 'Barang tambahan', quantity: 1, tripId: trip.id, chatId }, db);
+  assert.equal(request.chatId, chatId);
+  assert.equal(getSeller(user.email, db).chats.filter(chat => chat.orderId === order.id).length, 1);
+  assert.throws(() => ensureOrderConversation({ ...buyer, email: 'stranger@example.test' }, order.id, db));
+  setTripStatus(user.email, trip.id, 'closed', db);
+  assert.equal(ensureOrderConversation(buyer, order.id, db), chatId);
+  sendBuyerMessage(buyer, user.email, chatId, 'Bagaimana kabar pesanan saya?', db);
+  assert.equal(getSeller(user.email, db).chats.find(chat => chat.id === chatId).messages.at(-1).from, 'buyer');
+});
+
+test('chat can start without a request and legacy example orders have a named demo seller', () => {
+  const { db, data } = setup(), buyer = { role: 'buyer', email: 'buyer@example.test' };
+  const id = startBuyerConversation(buyer, data.shopId, db);
+  assert.equal(startBuyerConversation(buyer, data.shopId, db), id);
+  assert.equal(buyerConversations(buyer.email, db)[0].requests.length, 0);
+  createDraft({ email: buyer.email, items: [{ id: 'tas-mini', quantity: 1 }], address }, db);
+  const order = completeOrder(buyer.email, 'qris', db);
+  const orderChat = ensureOrderConversation(buyer, order.id, db);
+  assert.equal(ensureOrderConversation(buyer, order.id, db), orderChat);
+  assert.equal(buyerConversations(buyer.email, db).find(chat => chat.id === orderChat).shopName, 'NitipYuk Demo');
+});
 
 test('request stays in chat until the seller checks regulations and availability and publishes it', () => {
   const { db, data, trip } = setup(), buyer = { role: 'buyer', email: 'request-buyer@example.test', name: 'Buyer' };

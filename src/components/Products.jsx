@@ -26,7 +26,6 @@ export default function Products({ country = 'Semua negara', query = '', onCartC
   return <section className="product-categories" id="produk">
     <div className="product-categories__header">
       <div><h2>{catalogue ? 'Semua barang titipan' : 'Mau titip apa?'}</h2><p>{trip ? `${trip.title} · ${trip.shopName}` : "Pilihan produk jastip · Katalog contoh"}</p></div>
-      <a className="button-outline" href={`request.html${trip ? `?shop=${trip.shopId}&trip=${trip.id}` : ''}`}>Request barang lewat chat</a>
       {!catalogue && <a className="product-categories__all" href="produk.html">Semua produk <span aria-hidden="true">→</span></a>}
       {catalogue && <span>{visible.length} produk</span>}
     </div>

@@ -116,7 +116,7 @@ export function withdraw(email, amount, storage = globalThis.localStorage) {
   return update(email, data => { data.ledger.push({ id: crypto.randomUUID(), kind: 'withdrawal', amount, bank: `${bank.bank} •••• ${bank.number.slice(-4)}`, title: 'Penarikan saldo demo', at: new Date().toISOString() }); addEvent(data, 'Dana', 'Penarikan demo berhasil', `Saldo contoh ditarik ke ${bank.bank} •••• ${bank.number.slice(-4)}.`, 'seller-pendapatan.html'); }, storage);
 }
 export function openConversation(email, orderId, storage = globalThis.localStorage) {
-  return update(email, data => { if (data.chats.some(chat => chat.orderId === orderId)) return; const order = sellerOrders(email, storage).find(item => item.id === orderId); if (!order) throw new Error('Pesanan tidak ditemukan.'); data.chats.unshift({ id: crypto.randomUUID(), orderId, buyer: order.buyerName || order.shippingAddress?.recipient || 'Buyer', unread: 0, messages: [] }); }, storage);
+  return update(email, data => { if (data.chats.some(chat => chat.orderId === orderId)) return; const order = sellerOrders(email, storage).find(item => item.id === orderId); if (!order) throw new Error('Pesanan tidak ditemukan.'); data.chats.unshift({ id: crypto.randomUUID(), orderId, buyer: order.buyerName || order.shippingAddress?.recipient || 'Buyer', buyerEmail: order.userEmail?.toLowerCase(), unread: 0, messages: [] }); }, storage);
 }
 export function readChat(email, id, storage = globalThis.localStorage) { return update(email, data => { const chat = data.chats.find(item => item.id === id); if (chat) chat.unread = 0; }, storage); }
 export function sendMessage(email, id, text, storage = globalThis.localStorage) {

@@ -1,7 +1,43 @@
 import { accountKey, list, read, write, validQuantity } from './store.js';
-import { buyerTrips, getSeller, publicShop } from '../seller/sellerStore.js';
+import { buyerTrips, ensureSeller, getSeller, publicShop } from '../seller/sellerStore.js';
 
 export const requestLabels = { pending: 'Menunggu pengecekan', approved: 'Lolos pengecekan', rejected: 'Tidak bisa dititipkan', published: 'Sudah masuk katalog' };
+
+export function startBuyerConversation(buyer, shopId, storage = globalThis.localStorage) {
+  const shop = publicShop(shopId, storage);
+  if (buyer?.role !== 'buyer' || !buyer.email || !shop || shop.email === buyer.email.toLowerCase()) throw new Error('Pilih jastiper untuk memulai chat.');
+  const data = getSeller(shop.email, storage);
+  let chat = data.chats.find(item => item.buyerEmail === buyer.email.toLowerCase() && !item.orderId);
+  if (!chat) {
+    chat = { id: crypto.randomUUID(), buyer: buyer.name || buyer.email.split('@')[0], buyerEmail: buyer.email.toLowerCase(), unread: 0, buyerUnread: 0, messages: [], requests: [] };
+    data.chats.unshift(chat);
+    write(accountKey('seller', shop.email), data, storage);
+  }
+  return chat.id;
+}
+
+export function ensureOrderConversation(buyer, orderId, storage = globalThis.localStorage) {
+  const orders = list('nitipyuk-orders', storage);
+  const order = orders.find(item => item.id === orderId && item.userEmail?.toLowerCase() === buyer?.email?.toLowerCase());
+  if (buyer?.role !== 'buyer' || !order) throw new Error('Pesanan tidak ditemukan untuk akun ini.');
+  // Older example catalogue orders had no seller. Give those a clearly named demo shop.
+  if (!order.sellerEmail) {
+    const seller = { email: 'catalog.nitipyuk.demo@gmail.com', name: 'Jastiper Demo', shopName: 'NitipYuk Demo', role: 'penitip' };
+    ensureSeller(seller, storage);
+    order.sellerEmail = seller.email;
+    write('nitipyuk-orders', orders, storage);
+  }
+  const data = getSeller(order.sellerEmail, storage);
+  let chat = data.chats.find(item => item.orderId === order.id);
+  if (chat?.buyerEmail && chat.buyerEmail !== buyer.email.toLowerCase()) throw new Error('Percakapan tidak sesuai dengan buyer pesanan.');
+  if (!chat) {
+    chat = { id: crypto.randomUUID(), orderId: order.id, buyer: buyer.name || order.buyerName || order.shippingAddress?.recipient || 'Buyer', unread: 0, buyerUnread: 0, messages: [], requests: [] };
+    data.chats.unshift(chat);
+  }
+  chat.buyerEmail = buyer.email.toLowerCase();
+  write(accountKey('seller', order.sellerEmail), data, storage);
+  return chat.id;
+}
 
 export function createRequest(buyer, shopId, values, storage = globalThis.localStorage) {
   const shop = publicShop(shopId, storage);
@@ -13,7 +49,8 @@ export function createRequest(buyer, shopId, values, storage = globalThis.localS
   if (values.link && !/^https?:\/\/\S+$/i.test(values.link)) throw new Error('Link barang harus menggunakan http atau https.');
   const data = getSeller(shop.email, storage);
   const request = { id: crypto.randomUUID(), name: values.name.trim(), quantity: Number(values.quantity), link: values.link || '', notes: (values.notes || '').trim().slice(0, 2000), tripId: trip.id, status: 'pending', createdAt: new Date().toISOString() };
-  let chat = data.chats.find(item => item.buyerEmail === buyer.email.toLowerCase() && !item.orderId);
+  let chat = values.chatId ? data.chats.find(item => item.id === values.chatId && item.buyerEmail === buyer.email.toLowerCase()) : data.chats.find(item => item.buyerEmail === buyer.email.toLowerCase() && !item.orderId);
+  if (values.chatId && !chat) throw new Error('Pilih percakapan milikmu untuk request ini.');
   if (!chat) { chat = { id: crypto.randomUUID(), buyer: buyer.name || buyer.email.split('@')[0], buyerEmail: buyer.email.toLowerCase(), unread: 0, buyerUnread: 0, messages: [], requests: [] }; data.chats.unshift(chat); }
   chat.requests ||= [];
   chat.requests.push(request);

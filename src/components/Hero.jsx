@@ -18,7 +18,6 @@ export default function Hero() { return (<section className="hero" id="home">
               Cari Barang Titipan
             </a>
           </div>
-          <p className="request-hero-note">Request lewat chat jastiper. Setelah regulasi dan stok dicek, barang ditambahkan ke katalog toko.</p>
         </div>
 
         <span className="hero-location">

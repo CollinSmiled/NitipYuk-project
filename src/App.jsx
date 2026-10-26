@@ -43,7 +43,7 @@ export default function App() {
   if (protectedPage && (!user?.email || (['request.html', 'chat.html', 'form.html', 'payment.html'].includes(page) && user.role !== 'buyer'))) {
     const destination = encodeURIComponent(page + location.search);
     content = <main className="flow-page"><section className="flow-card empty-state"><h1>{page === "pesanan.html" ? "Pesananmu masih kosong" : page === "notif.html" ? "Masuk untuk melihat notifikasi" : "Masuk untuk melanjutkan titipanmu"}</h1><p>{page === "pesanan.html" ? "Masuk ke akun Buyer untuk melihat pesanan dan mengikuti perjalanan titipanmu." : "Gunakan akun Buyer untuk checkout dan mengikuti pesananmu."}</p><a className="button-solid" href={`login.html?return=${destination}`}>Masuk / Daftar</a></section></main>;
-  } else if (['request.html', 'chat.html'].includes(page)) content = <Requests user={user} chatPage={page === 'chat.html'} />;
+  } else if (['request.html', 'chat.html'].includes(page)) content = <Requests user={user} />;
   else if (page === 'keranjang.html') content = <Cart cart={cart} onCartChange={onCartChange} />;
   else if (page === 'form.html') content = <CheckoutForm user={user} cart={cart} />;
   else if (page === 'payment.html') content = <Payment user={user} onCartChange={onCartChange} />;

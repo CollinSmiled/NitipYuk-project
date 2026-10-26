@@ -169,7 +169,14 @@
 .request-card p { font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
 .request-check { display: flex !important; flex-direction: row !important; align-items: center; gap: 12px; }
 .request-check input { width: 18px !important; min-height: 18px; flex-shrink: 0; }
-.request-hero-note { font-size: 12px !important; }
 .seller-chat-sidebar a { text-decoration: none; }
 :target { scroll-margin-top: 180px; }
 @media(max-width:700px) { .request-steps { grid-template-columns: 1fr; gap: 8px; } .request-steps li { padding: 14px; } .seller-navbar .links { flex-wrap: wrap; } }
+
+.chat-shop-picker { padding: 18px; border-top: 1px solid var(--line); display: grid; gap: 10px; }
+.chat-shop-picker h2 { font-size: 13px; margin: 0 0 5px; }
+.chat-order-context { background: #f5e4ed; display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 14px 16px; font-size: 12px; }
+.chat-order-context a { margin-left: auto; color: var(--plum); }
+.chat-request-action { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; padding: 12px; }
+.chat-request-action small { color: var(--muted); font-size: 11px; line-height: 1.6; }
+.order-chat-link { display: inline-block; margin: 15px 0; }

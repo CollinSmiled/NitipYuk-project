@@ -79,8 +79,10 @@ Seller status updates to those local buyer orders also update buyer tracking and
 
 ## Request barang melalui chat
 
-Buyer memilih jastiper/trip di `request.html` dan mengirim nama, jumlah, link referensi, serta varian sebagai pesan pertama. `chat.html` menyimpan percakapan dan menampilkan hasil pengecekan. Request belum menjadi pesanan dan belum dapat dibeli.
+Buyer membuka `chat.html`, memilih jastiper, lalu menggunakan tombol request di dalam percakapan. Nama, jumlah, link referensi, dan varian dikirim ke chat yang sedang dipilih. `request.html` tetap menjadi alias tampilan chat untuk tautan lama. Request belum menjadi pesanan dan belum dapat dibeli. Tombol request tidak tampil di homepage, katalog, atau profil toko.
 
 Seller membuka `seller-pesan.html`, memeriksa regulasi dan ketersediaan, lalu menyetujui atau menolak disertai catatan. Penerbitan diblokir sebelum kedua pengecekan dikonfirmasi. Request yang disetujui bisa ditambahkan ke katalog dengan nama, kategori, dan harga. Foto kategori dipakai sebagai ilustrasi. Halaman `seller-katalog.html` menampilkan barang yang sudah diterbitkan; buyer mendapatkan link katalog melalui chat dan dapat melanjutkan checkout biasa. Barang terikat pada seller dan trip asalnya.
 
 Navbar buyer dan seller tetap terlihat saat scroll. Untuk pengujian demo, bergantian login Buyer dan Seller menggunakan browser yang sama; backend tetap diperlukan untuk chat lintas perangkat.
+
+Setelah konfirmasi pembayaran, tombol Chat jastiper tersedia di halaman berhasil dan setiap kartu Pesanan saya. Percakapan menampilkan ID/status pesanan dan memakai thread yang sama saat dibuka ulang. Chat tetap tersedia setelah trip ditutup; hanya request barang baru yang memerlukan trip aktif. Pesanan katalog contoh lama tanpa seller ditautkan ke toko lokal bernama NitipYuk Demo; ini tetap simulasi, bukan kontak seller eksternal.
