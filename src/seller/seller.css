@@ -53,7 +53,7 @@
 .seller-trip-card progress::-webkit-progress-value { background: var(--plum); border-radius: 12px; }
 .seller-card-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .danger-outline { border-color: #a3657a; color: #994963; }
-.seller-modal { width: min(680px, calc(100vw - 30px)); max-height: calc(100dvh - 50px); border: 0; border-radius: 24px; padding: 0; color: var(--plum); box-shadow: 0 25px 90px #27101c40; }
+.seller-modal { width: min(680px, calc(100vw - 30px)); max-height: calc(100dvh - 40px); overflow-y: auto; border: 0; border-radius: 24px; padding: 0; color: var(--plum); box-shadow: 0 25px 90px #27101c40; }
 .seller-modal::backdrop { background: #34212c70; }
 .seller-modal-body { padding: 30px; }
 .seller-modal-body > header { display: flex; justify-content: space-between; align-items: start; gap: 15px; margin-bottom: 25px; }
@@ -120,41 +120,41 @@
 .seller-notifications .notification-card .seller-item-icon { margin-left: auto; }
 .seller-notifications .notification-info > span { color: #d98b14; font-size: 22px; }
 .buyer-trip-card > img { width: 100%; height: 170px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
-@media (max-width: 1000px) { .seller-stats.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } .seller-chat-layout { grid-template-columns: 235px minmax(0, 1fr); } .seller-navbar .links { order: 3; margin: 0; } }
-@media (max-width: 700px) {
-  .seller-navbar { padding: 12px 15px; gap: 14px; }
-  .seller-navbar .brand-text strong { font-size: 19px; }
+@media (max-width: 1000px) { .seller-stats.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } .seller-chat-layout { grid-template-columns: 235px minmax(0, 1fr); } }
+@media (max-width: 900px) {
+  .seller-navbar { padding: 10px 14px; gap: 10px; }
+  .seller-navbar .links, .seller-navbar .account-area { display: none; }
   .seller-navbar .nav-actions { margin-left: auto; }
-  .seller-navbar .auth-link > span:last-child { max-width: 60px; font-size: 11px; }
-  .seller-navbar .links { width: 100%; justify-content: center; }
-  .seller-navbar .links a { font-size: 12px; padding: 9px 13px; }
+}
+@media (max-width: 700px) {
+  .seller-navbar .brand-text strong { font-size: 19px; }
   .seller-page .flow-heading { gap: 12px; }
   .seller-dashboard-grid, .seller-trip-grid { grid-template-columns: 1fr; }
   .seller-stats { gap: 10px; }
   .seller-stat { padding: 18px 15px; }
   .seller-stats.three { grid-template-columns: 1fr; gap: 0; }
-  .seller-order-preview .seller-status { font-size: 8px; padding: 5px 7px; }
+  .seller-order-preview .seller-status { font-size: 9px; padding: 5px 8px; }
   .seller-order-preview { gap: 10px; }
-  .seller-dashboard-grid .text-link { font-size: 10px; }
-  .seller-trip-card header { align-items: start; }
+  .seller-dashboard-grid .text-link { font-size: 11px; }
+  .seller-trip-card header { align-items: start; flex-wrap: wrap; }
   .seller-tabs { gap: 6px; }
-  .seller-tabs button { font-size: 10px; padding: 9px 11px; }
+  .seller-tabs button { font-size: 11px; padding: 8px 12px; }
   .seller-search { width: 100%; }
   .seller-order-footer { align-items: start; flex-direction: column; }
   .seller-order-footer > div:last-child { align-self: flex-end; }
-  .seller-modal-body { padding: 24px 20px; }
-  .seller-modal h2 { font-size: 25px; }
+  .seller-modal-body { padding: 22px 18px; }
+  .seller-modal h2 { font-size: 23px; }
   .seller-chat-layout { display: flex; flex-direction: column; }
   .seller-chat-sidebar { border: 0; max-height: 240px; overflow-y: auto; }
   .seller-chat-preview { padding: 12px 15px; }
   .seller-conversation { border-top: 1px solid var(--line); }
   .seller-conversation > header { flex-wrap: wrap; }
-  .seller-conversation > header .button-outline { font-size: 10px; }
+  .seller-conversation > header .button-outline { font-size: 11px; }
   .seller-bubbles { height: 300px; flex: none; padding: 15px; }
   .seller-shop-banner { flex-wrap: wrap; gap: 15px; }
   .seller-shop-banner > a { margin-left: 0; }
-  .seller-bank-row { align-items: start; }
-  .seller-bank-row .seller-card-actions { flex-direction: column; gap: 5px; }
+  .seller-bank-row { align-items: start; flex-wrap: wrap; gap: 12px; }
+  .seller-bank-row .seller-card-actions { flex-direction: row; flex-wrap: wrap; gap: 8px; }
   .seller-filter-row { gap: 0; margin-bottom: 15px; }
 }
 

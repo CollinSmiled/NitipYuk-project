@@ -120,16 +120,19 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .site-footer span { margin-right: auto; }
 @media (max-width: 1000px) { .payment-layout { grid-template-columns: 1fr; } .order-summary { position: static; } .account-layout { grid-template-columns: 170px minmax(0, 1fr); gap: 20px; } }
 @media (max-width: 650px) {
-  .flow-page { padding: 26px 16px 40px; } .flow-card { padding: 20px; border-radius: 14px; } .cart-table-wrap { padding: 0; }
+  .flow-page { padding: 22px 14px 40px; } .flow-card { padding: 18px 16px; border-radius: 14px; } .cart-table-wrap { padding: 0; -webkit-overflow-scrolling: touch; }
+  .cart-table th, .cart-table td { padding: 14px 12px; }
   .checkout-bar, .checkout-total { align-items: stretch; flex-direction: column; gap: 15px; } .checkout-total { flex-direction: row; align-items: center; }
   .checkout-total strong { font-size: 18px; margin-left: 6px; } .checkout-total > span { font-size: 12px; }
-  .checkout-steps { gap: 15px; justify-content: space-between; } .checkout-steps li { font-size: 10px; gap: 5px; } .checkout-steps span { width: 22px; height: 22px; }
-  .account-layout { display: block; } .account-sidebar { flex-direction: row; flex-wrap: wrap; margin-bottom: 25px; } .account-sidebar .eyebrow { width: 100%; } .account-sidebar a, .account-sidebar button { padding: 9px; font-size: 12px; margin: 0; }
-  .form-grid { grid-template-columns: 1fr; } .profile-summary { gap: 8px; } .profile-summary .flow-card { padding: 15px 10px; } .profile-summary span { font-size: 10px; }
-  .profile-banner-react { flex-wrap: wrap; } .upload-button { margin-left: 0; } .heading-actions { align-items: start; flex-wrap: wrap; }
+  .checkout-steps { gap: 8px; justify-content: space-between; } .checkout-steps li { flex: 1; flex-direction: column; text-align: center; gap: 6px; font-size: 11px; } .checkout-steps span { width: 24px; height: 24px; }
+  .account-layout { display: block; } .account-sidebar { flex-direction: row; flex-wrap: wrap; margin-bottom: 20px; gap: 6px; } .account-sidebar .eyebrow { width: 100%; } .account-sidebar a, .account-sidebar button { padding: 9px 11px; font-size: 12px; margin: 0; }
+  .form-grid { grid-template-columns: 1fr; } .profile-summary { gap: 8px; } .profile-summary .flow-card { padding: 14px 10px; } .profile-summary strong { font-size: 20px; } .profile-summary span { font-size: 10px; }
+  .profile-banner-react { flex-wrap: wrap; } .upload-button { margin-left: 0; } .heading-actions { align-items: start; flex-wrap: wrap; gap: 12px; }
+  .profile-address-row { flex-wrap: wrap; gap: 12px; } .address-actions { flex-wrap: wrap; gap: 14px; }
+  .order-card header { flex-wrap: wrap; gap: 10px; }
   .order-card footer { flex-direction: column; } .order-line { font-size: 13px; } .order-line span { text-align: right; }
   .checkout-item > strong { white-space: normal; } .checkout-item { gap: 12px; } .checkout-item img { width: 58px; height: 68px; }
-  .site-footer { flex-wrap: wrap; gap: 12px; } .site-footer span { width: 65%; } .summary-total { font-size: 15px; }
+  .site-footer { flex-wrap: wrap; gap: 10px 16px; padding: 24px 16px; } .site-footer span { width: 100%; margin-right: 0; } .summary-total { font-size: 15px; }
 }
 @media (max-width: 650px) {
   .checkout-steps { gap: 8px; }

@@ -123,7 +123,7 @@
   }
 }
 
-.login-roles { border: 1px solid #eadfe5; border-radius: 12px; padding: 12px; display: flex; gap: 20px; }
+.login-roles { border: 1px solid #eadfe5; border-radius: 12px; padding: 12px; display: flex; flex-wrap: wrap; gap: 12px 20px; }
 .login-roles legend { font-size: 13px; color: #4b263b; }
 .login-roles label { display: flex; align-items: center; gap: 8px; font-size: 13px; }
 .login-roles input { width: auto; accent-color: #4b263b; }

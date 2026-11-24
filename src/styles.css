@@ -8,6 +8,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   background: #fffafd;
   color: #4b263b;
   font-family: Arial, sans-serif;
@@ -790,6 +791,12 @@ button.country-card:hover {
   color: #fff;
 }
 
+.nav-menu-toggle,
+.mobile-nav-drawer,
+.mobile-nav-backdrop {
+  display: none;
+}
+
 /* Tablet */
 @media (max-width: 1100px) {
   .navbar {
@@ -826,35 +833,166 @@ button.country-card:hover {
   }
 }
 
+/* Mobile navigation drawer */
+@media (max-width: 900px) {
+  .navbar {
+    min-height: 62px;
+    padding: 10px 16px;
+    gap: 10px;
+  }
+
+  .navbar .links,
+  .navbar .account-area {
+    display: none;
+  }
+
+  .nav-actions {
+    margin-left: auto;
+    gap: 8px;
+  }
+
+  .nav-menu-toggle {
+    display: grid;
+  }
+
+  .search {
+    order: 5;
+    flex: 1 1 100%;
+    height: 42px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .search-icon {
+    width: 18px;
+    height: 18px;
+    flex-basis: 18px;
+  }
+
+  .search input {
+    font-size: 14px;
+  }
+
+  .search button {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .search button img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mobile-nav-drawer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 102;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: calc(100dvh - 110px);
+    padding: 16px;
+    overflow-y: auto;
+    border-top: 1px solid #f2e8ee;
+    border-bottom: 1px solid #eadde5;
+    background: #fff;
+    box-shadow: 0 18px 36px rgb(76 38 59 / 16%);
+  }
+
+  .mobile-nav-drawer[hidden] {
+    display: none;
+  }
+
+  .mobile-nav-section {
+    display: grid;
+    gap: 4px;
+  }
+
+  .mobile-nav-section a {
+    display: flex;
+    align-items: center;
+    padding: 11px 14px;
+    border-radius: 12px;
+    color: #342b30;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .mobile-nav-section a:hover,
+  .mobile-nav-section a.active {
+    background: #f7e2ed;
+    color: #4b263b;
+    font-weight: 700;
+  }
+
+  .mobile-nav-divider {
+    height: 1px;
+    background: #eee5ea;
+  }
+
+  .mobile-nav-account {
+    display: grid;
+    gap: 10px;
+  }
+
+  .mobile-nav-account .auth-link {
+    padding: 4px 6px;
+  }
+
+  .mobile-nav-account .auth-link > span:last-child {
+    max-width: none;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .mobile-nav-sublinks a {
+    padding: 9px 14px;
+    color: #4c263b;
+    font-size: 14px;
+  }
+
+  .mobile-nav-sublinks .dropdown-logout {
+    margin-top: 6px;
+    padding: 12px 14px 4px;
+    color: #a02846;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .mobile-nav-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: block;
+    background: rgb(42 18 32 / 36%);
+    backdrop-filter: blur(2px);
+  }
+}
+
 /* Ponsel */
 @media (max-width: 600px) {
   .navbar {
-    gap: 10px;
-    padding: 12px 14px;
+    gap: 8px;
+    padding: 10px 14px;
   }
 
   .brand {
     gap: 8px;
-    font-size: 20px;
+    font-size: 19px;
   }
 
   .brand-icon {
-    width: 44px;
-    height: 44px;
-    flex-basis: 44px;
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
   }
 
   .brand-text strong {
-    font-size: 22px;
-  }
-
-  .links {
-    gap: 4px;
-  }
-
-  .links a {
-    padding: 8px;
-    font-size: 13px;
+    font-size: 19px;
   }
 
   .nav-actions {
@@ -862,83 +1000,123 @@ button.country-card:hover {
   }
 
   .nav-icon-button {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
   }
 
   .auth-icon {
-    width: 40px;
-    height: 40px;
-    flex-basis: 40px;
-  }
-
-  .auth-link > span:last-child {
-    max-width: 72px;
-    font-size: 13px;
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
   }
 
   .hero {
-    min-height: 480px;
-    margin: 16px;
-    padding: 32px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    margin: 14px;
+    padding: 28px 20px;
+    border-radius: 22px;
     background:
-      linear-gradient(90deg, rgb(255 244 248 / 96%), rgb(255 238 244 / 65%)),
+      linear-gradient(135deg, rgb(255 244 248 / 97%), rgb(255 238 244 / 72%)),
       url("/element/fuji.jpg") center 80% / cover no-repeat;
   }
 
+  .hero-label {
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
   .hero h1 {
-    font-size: 38px;
+    font-size: clamp(28px, 7.5vw, 36px);
+    margin-bottom: 14px;
   }
 
   .hero p {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 22px;
   }
 
   .hero-buttons {
+    width: 100%;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+
+  .hero-buttons .button-primary,
+  .hero-buttons .button-secondary {
+    justify-content: center;
+    padding: 13px 18px;
+    font-size: 15px;
+  }
+
+  .hero-location {
+    position: static;
+    margin-top: 20px;
+    padding: 8px 14px;
+    font-size: 12px;
   }
 
   .benefits {
     flex-direction: column;
-    margin: 0 20px 20px;
+    gap: 16px;
+    margin: 0 16px 16px;
+    padding: 18px 8px;
   }
 
   .recommendations {
-    padding: 36px 16px;
+    padding: 32px 16px;
+  }
+
+  .recommendation-heading {
+    gap: 12px;
+    margin-bottom: 20px;
   }
 
   .recommendation-heading h2 {
-    font-size: 27px;
+    font-size: 24px;
+  }
+
+  .recommendation-heading p {
+    font-size: 14px;
+  }
+
+  .carousel-controls {
+    flex-shrink: 0;
+    gap: 8px;
   }
 
   .carousel-button {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
   }
 
   .trip-card {
     flex-basis: 82vw;
-    height: 250px;
+    height: 240px;
   }
 
   .countries {
-    padding: 32px 16px;
+    padding: 28px 16px;
   }
 
   .countries h2 {
-    font-size: 29px;
+    font-size: 26px;
   }
 
   .countries-subtitle {
-    margin-bottom: 24px;
-    font-size: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
   }
 
   button.country-card {
-    flex-basis: 150px;
-    min-height: 120px;
-    border-radius: 22px;
+    flex-basis: 136px;
+    min-height: 112px;
+    border-radius: 20px;
+    font-size: 15px;
   }
 
   .product-categories {
@@ -948,44 +1126,50 @@ button.country-card:hover {
   .product-categories__header {
     align-items: flex-start;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 14px;
+    margin-bottom: 20px;
   }
 
   .product-categories__header h2 {
-    font-size: 30px;
+    font-size: 26px;
   }
 
   .product-categories__header p {
     margin-top: 6px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .product-categories__all,
   .product-filter {
-    padding: 9px 15px;
-    border-radius: 16px;
-    font-size: 16px;
+    padding: 8px 14px;
+    border-radius: 14px;
+    font-size: 14px;
   }
 
   .catalog {
     padding: 24px 16px 36px;
   }
 
+  .catalog-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
   .catalog-heading h2 {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .catalog-grid {
-    gap: 12px;
+    gap: 14px;
   }
 
   .product-photo {
-    height: 145px;
+    height: 160px;
   }
 
   .product-details {
-    padding: 12px;
+    padding: 14px;
   }
 
   .product-details h3 {
@@ -1000,7 +1184,7 @@ button.country-card:hover {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .catalog-grid {
     grid-template-columns: 1fr;
   }

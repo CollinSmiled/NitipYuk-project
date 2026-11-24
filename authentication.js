@@ -46,3 +46,32 @@ if (isBuyer) {
   if (guestOrders) guestOrders.hidden = true;
   if (buyerOrders) buyerOrders.hidden = false;
 }
+
+// Toggle menu hamburger pada layar ponsel untuk halaman autentikasi.
+const navToggle = document.querySelector(".nav-menu-toggle");
+const navbar = document.querySelector(".navbar");
+
+if (navToggle && navbar) {
+  const closeMenu = () => {
+    navbar.classList.remove("is-menu-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Buka menu navigasi");
+  };
+
+  navToggle.addEventListener("click", () => {
+    const isOpen = navbar.classList.toggle("is-menu-open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Tutup menu navigasi" : "Buka menu navigasi",
+    );
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) closeMenu();
+  });
+}
