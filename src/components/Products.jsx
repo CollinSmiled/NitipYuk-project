@@ -15,7 +15,7 @@ export default function Products({ country = 'Semua negara', query = '', onCartC
     (!tripId || trip && product.country === trip.country) &&
     (category === 'Semua produk' || product.category === category) &&
     (country === 'Semua negara' || product.country === country) &&
-    `${product.name} ${product.category} ${product.country}`.toLowerCase().includes(query.trim().toLowerCase()));
+    `${product.name} ${product.category} ${product.country} ${product.shopName || product.seller?.name || ''}`.toLowerCase().includes(query.trim().toLowerCase()));
   function add(product) {
     try {
       addToCart(product.id, undefined, trip || buyerTrips().find(item => item.id === product.tripId) || null);
@@ -33,16 +33,37 @@ export default function Products({ country = 'Semua negara', query = '', onCartC
       {['Semua produk', 'Fashion', 'Makanan', 'Skincare', 'Lainnya'].map(value => <button key={value} className={category === value ? 'product-filter is-active' : 'product-filter'} type="button" aria-pressed={category === value} onClick={() => setCategory(value)}>{value}</button>)}
     </div>
     <p className="inline-notice" role="status">{notice}</p>
-    <div className="catalog-grid">{visible.map(product => <article className="product-card" key={product.id}>
+    <div className="catalog-grid">{visible.map(product => {
+      const sellerName = product.shopName || product.seller?.name || 'NitipYuk Jastip';
+      const sellerRating = product.seller?.rating ?? 4.9;
+      const sellerReviews = product.seller?.reviewCount ?? 42;
+      const initials = sellerName.split(/\s+/).map(part => part[0]).join('').slice(0, 2).toUpperCase();
+      return <article className="product-card" key={product.id}>
       <img className="product-photo" src={product.image} alt={product.name} />
-      <div className="product-details"><p className="product-country">{product.flag} {product.country}</p><h3>{product.name}</h3>{product.shopName && <a href={`toko.html?shop=${product.shopId}`}>{product.shopName}</a>}
+      <div className="product-details"><p className="product-country">{product.flag} {product.country}</p><h3>{product.name}</h3>
+        <div className="product-seller">
+          <div className="product-seller-info">
+            <span className="product-seller-avatar" aria-hidden="true">{initials}</span>
+            {product.shopId ? (
+              <a className="product-seller-name" href={`toko.html?shop=${product.shopId}`}>{sellerName}</a>
+            ) : (
+              <span className="product-seller-name">{sellerName}</span>
+            )}
+          </div>
+          <span className="product-seller-rating" aria-label={`Rating ${sellerRating.toFixed(1)} dari 5 berdasarkan ${sellerReviews} ulasan`}>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.3 6.1 20.5l1.2-6.5-4.8-4.6 6.6-.9Z" /></svg>
+            <strong>{sellerRating.toFixed(1)}</strong>
+            <small>({sellerReviews})</small>
+          </span>
+        </div>
         <p className="product-price">Mulai dari <strong>{money(product.price)}</strong></p>
         <div className="product-actions">
           <button className="button-outline" type="button" onClick={() => add(product)}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M2 3h3l3 13h11l3-10H6M12 8v5M9.5 10.5h5" /><circle cx="10" cy="21" r="1" /><circle cx="18" cy="21" r="1" /></svg> Masukkan Keranjang</button>
           <a className="button-solid" href={user?.role === "buyer" ? `form.html?barang=${product.id}${purchaseTrip(product) ? `&trip=${purchaseTrip(product).id}` : ""}` : `login.html?return=${encodeURIComponent(`form.html?barang=${product.id}${purchaseTrip(product) ? `&trip=${purchaseTrip(product).id}` : ""}`)}`}>Titip sekarang</a>
         </div>
       </div>
-    </article>)}</div>
+    </article>;
+    })}</div>
     {!visible.length && <p role="status">Belum ada produk yang cocok. Coba kata kunci, kategori, atau negara lainnya.</p>}
   </section>;
 }

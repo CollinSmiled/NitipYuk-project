@@ -6,7 +6,12 @@ export const products = [
     "image": "element/bag.jpg",
     "name": "Tas mini warna krem",
     "price": 450000,
-    "flag": "🇰🇷"
+    "flag": "🇰🇷",
+    "seller": {
+      "name": "SeoulStyle Jastip",
+      "rating": 4.9,
+      "reviewCount": 128
+    }
   },
   {
     "id": "camilan-jepang",
@@ -15,7 +20,12 @@ export const products = [
     "image": "element/snack.jpg",
     "name": "Camilan khas Jepang",
     "price": 85000,
-    "flag": "🇯🇵"
+    "flag": "🇯🇵",
+    "seller": {
+      "name": "TokyoSnacks.id",
+      "rating": 4.8,
+      "reviewCount": 215
+    }
   },
   {
     "id": "serum-wajah",
@@ -24,6 +34,11 @@ export const products = [
     "image": "element/skincare.jpg",
     "name": "Serum perawatan wajah",
     "price": 180000,
-    "flag": "🇰🇷"
+    "flag": "🇰🇷",
+    "seller": {
+      "name": "K-Glow Titip",
+      "rating": 4.9,
+      "reviewCount": 94
+    }
   }
 ];

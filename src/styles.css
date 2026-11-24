@@ -755,6 +755,76 @@ button.country-card:hover {
   font-size: 18px;
 }
 
+.product-seller {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: #fdf6fa;
+  border: 1px solid #f1e4ec;
+}
+
+.product-seller-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.product-seller-avatar {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border-radius: 50%;
+  background: #4b263b;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.product-seller-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #4b263b;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a.product-seller-name:hover {
+  text-decoration: underline;
+}
+
+.product-seller-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  color: #4b263b;
+  font-size: 13px;
+}
+
+.product-seller-rating svg {
+  width: 14px;
+  height: 14px;
+  fill: #e89b1e;
+}
+
+.product-seller-rating strong {
+  font-weight: 700;
+}
+
+.product-seller-rating small {
+  color: #817780;
+  font-size: 12px;
+}
+
 .product-price {
   margin: 0 0 16px;
   color: #817780;
