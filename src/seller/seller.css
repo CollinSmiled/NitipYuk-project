@@ -1,6 +1,6 @@
 .seller-navbar { gap: 20px; }
 .seller-navbar .brand { gap: 9px; }
-.seller-navbar .brand-icon { width: 84px; height: 46px; flex-basis: auto; }
+.seller-navbar .brand-icon { width: auto; height: 46px; flex-basis: auto; }
 .seller-navbar .brand-text strong { font-size: 21px; }
 .seller-navbar .links { margin-left: auto; gap: 8px; }
 .seller-navbar .nav-icon-button { display: grid; place-items: center; }

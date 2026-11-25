@@ -43,19 +43,19 @@ body {
 }
 
 .brand-icon {
-  display: grid;
-  width: 96px;
+  display: flex;
+  align-items: center;
+  width: auto;
   height: 52px;
   flex: 0 0 auto;
-  place-items: center;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 0;
   background: transparent;
 }
 
 .brand-icon img {
   display: block;
-  width: 100%;
+  width: auto;
   height: 100%;
   object-fit: contain;
 }
@@ -1067,8 +1067,8 @@ a.product-seller-name:hover {
   }
 
   .brand-icon {
-    width: 78px;
-    height: 44px;
+    width: auto;
+    height: 42px;
     flex-basis: auto;
   }
 
